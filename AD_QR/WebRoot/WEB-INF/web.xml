@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>AD_QR</display-name>
+
+	<servlet>
+		<description />
+		<display-name>GetADInformationList</display-name>
+		<servlet-name>GetADInformationList</servlet-name>
+		<servlet-class>adqr_servlet.GetADInformationList</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GetADInformationList</servlet-name>
+		<url-pattern>/servlet/getADInformationList</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>GetAddressInformationList</display-name>
+		<servlet-name>GetAddressInformationList</servlet-name>
+		<servlet-class>adqr_servlet.GetAddressInformationList</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GetAddressInformationList</servlet-name>
+		<url-pattern>/servlet/getAddress</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>SetADInformationList</display-name>
+		<servlet-name>SetADInformationList</servlet-name>
+		<servlet-class>adqr_servlet.SetADInformationList</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SetADInformationList</servlet-name>
+		<url-pattern>/servlet/setADInformationList</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>InsertContentListServlet</display-name>
+		<servlet-name>InsertContentListServlet</servlet-name>
+		<servlet-class>adqr_servlet.InsertContentListServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>InsertContentListServlet</servlet-name>
+		<url-pattern>/servlet/insertContentServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>CheckUserServlet</display-name>
+		<servlet-name>CheckUserServlet</servlet-name>
+		<servlet-class>adqr_servlet.CheckUserServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CheckUserServlet</servlet-name>
+		<url-pattern>/servlet/checkUserServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>InsertUserAccountServlet</display-name>
+		<servlet-name>InsertUserAccountServlet</servlet-name>
+		<servlet-class>adqr_servlet.InsertUserAccountServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>InsertUserAccountServlet</servlet-name>
+		<url-pattern>/servlet/insertUserAccountServlet</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+</web-app>

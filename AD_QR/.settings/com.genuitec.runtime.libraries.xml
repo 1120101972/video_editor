@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+  <container path="com.genuitec.runtime.library/com.genuitec.generic_6.0">
+    <custom-jar path="E:lib/Digital_BIT_Server/Digital_BIT_Server/WebRoot/WEB-INF/lib/json-lib-2.4-jdk13.jar"/>
+    <custom-jar path="E:lib/Digital_BIT_Server/Digital_BIT_Server/WebRoot/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+    <custom-jar path="E:lib/Digital_BIT_Server/Digital_BIT_Server/WebRoot/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+    <custom-jar path="E:lib/Digital_BIT_Server/Digital_BIT_Server/WebRoot/WEB-INF/lib/mysql-connector-java-5.1.7-bin.jar"/>
+    <custom-jar path="E:lib/Digital_BIT_Server/Digital_BIT_Server/WebRoot/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+    <custom-jar path="E:lib/Digital_BIT_Server/Digital_BIT_Server/WebRoot/WEB-INF/lib/commons-lang-2.4.jar"/>
+    <custom-jar path="E:lib/Digital_BIT_Server/Digital_BIT_Server/WebRoot/WEB-INF/lib/servlet-api.jar"/>
+    <custom-jar path="E:lib/Digital_BIT_Server/Digital_BIT_Server/WebRoot/WEB-INF/lib/commons-beanutils.jar"/>
+  </container>
+</project>
