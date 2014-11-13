@@ -2,6 +2,8 @@ package com.yixia.camera.demo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -10,14 +12,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.yixia.camera.demo.R;
 import com.yixia.camera.demo.VCameraDemoBaseActivity;
 import com.yixia.camera.demo.adapter.CoverFlowAdapter;
 import com.yixia.camera.demo.fragment.VideoListFlowGFragment;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
+import com.yixia.camera.demo.ui.widget.TouchRoateImageView;
 import com.yixia.camera.demo.ui.widget.coverflow.CoverFlow;
-import com.yixia.camera.demo.ui.widget.coverflow.DiscoverContainerView;
+import com.yixia.camera.demo.utils.StringUtils;
 
 /**
  * 通过地球的转动选择特定的模块
@@ -27,9 +31,8 @@ import com.yixia.camera.demo.ui.widget.coverflow.DiscoverContainerView;
  */
 public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 
-	private ImageView iv_change_module;
+	private TouchRoateImageView iv_change_module;
 	private ImageView iv_video;
-	private DiscoverContainerView flow;
 
 	private FragmentManager manager;
 	private final String TAG = "FourModuleChooseActivity";
@@ -43,28 +46,54 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 		baseLayout.setHeaderBarStyle("原创频道", R.drawable.page_loading_bar,
 				R.drawable.page_loading_bar);
 		initView();
-		flow = (DiscoverContainerView) findViewById(R.id.cover_flow);
-		flow.initCardView(FourModuleChooseActivity.this);
-//		CoverFlowAdapter adapter = new CoverFlowAdapter(this);
-//		flow.setAdapter(adapter);
-//		flow.setGravity(Gravity.CENTER_HORIZONTAL);
-		// getFragment();
+
+		getFragment();
+
+		// CoverFlowAdapter adapter = new CoverFlowAdapter(this);
+		// flow.setAdapter(adapter);
+		// flow.setGravity(Gravity.CENTER_HORIZONTAL);
+
+		// CoverFlow cf = (CoverFlow) this.findViewById(R.id.cover_flow);
+		// //ImageAdapter adapter = new ImageAdapter(this);
+		// cf.setAdapter(adapter);
+		// cf.setGravity(Gravity.CENTER_HORIZONTAL);
 	}
 
 	public void setMargin(int height) {
-		RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.WRAP_CONTENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		mp.setMargins(0, 0, 0, -(height / 2));
-		iv_change_module.setLayoutParams(mp);
+//		RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
+//				RelativeLayout.LayoutParams.WRAP_CONTENT,
+//				RelativeLayout.LayoutParams.WRAP_CONTENT);
+//		mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//		mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//		mp.setMargins(0, 0, 0, -(height / 2));
+//		iv_change_module.setLayoutParams(mp);
+//		Toast.makeText(
+//				FourModuleChooseActivity.this,
+//				StringUtils.px2dip(FourModuleChooseActivity.this, height / 2)
+//						+ "", 0).show();
+
 	}
+
+	private Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			iv_change_module.invalidate();
+
+		}
+	};
+
+	private Runnable myRunnable = new Runnable() {
+		public void run() {
+			Message message = Message.obtain();
+			message.what = 1;
+			handler.sendMessage(message);
+
+		}
+	};
 
 	@Override
 	public void initView() {
 		// TODO Auto-generated method stub
-		iv_change_module = (ImageView) findViewById(R.id.infoOperating);
+		iv_change_module = (TouchRoateImageView) findViewById(R.id.infoOperating);
 		iv_video = (ImageView) findViewById(R.id.iv_camera);
 		iv_video.bringToFront();
 		iv_video.setOnClickListener(this);

@@ -5,31 +5,22 @@
     android:background="@color/black"
     android:orientation="vertical" >
 
-    <TextView
-        style="@style/text14"
-        android:text="HELLO" />
-
     <FrameLayout
         android:id="@+id/frag_cover_flow"
         style="@style/fill"
-        android:visibility="gone" >
+        android:layout_marginBottom="100dp"
+        android:visibility="visible" >
     </FrameLayout>
-
-    <com.yixia.camera.demo.ui.widget.coverflow.DiscoverContainerView
-        android:id="@+id/cover_flow"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:layout_centerHorizontal="true" />
 
     <com.yixia.camera.demo.ui.widget.TouchRoateImageView
         android:id="@+id/infoOperating"
-        android:visibility="visible"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/bg_turntable" />
+        android:layout_marginBottom="-160dp"
+        android:src="@drawable/bg_turntable"
+        android:visibility="visible" />
 
     <ImageView
         android:id="@+id/iv_camera"
@@ -38,7 +29,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:clickable="true"
-        android:src="@drawable/camera"
-         />
+        android:src="@drawable/camera" />
 
 </RelativeLayout>

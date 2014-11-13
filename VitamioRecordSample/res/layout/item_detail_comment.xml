@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="8dp" >
+
+    <ImageView
+        android:id="@+id/imgPeople"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/d_touxiang" />
+
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="2dp"
+        android:text="2013-11-13"
+        android:textColor="@color/detail_gray"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/txtUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/txtTime"
+        android:layout_toRightOf="@+id/imgPeople"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="名字好长"
+        android:textColor="@color/detail_gray"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtcommentBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTime"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/imgPeople"
+        android:text="我来发评论啦，看看好不好用"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        style="@style/deep_divider"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/imgPeople" />
+
+</RelativeLayout>

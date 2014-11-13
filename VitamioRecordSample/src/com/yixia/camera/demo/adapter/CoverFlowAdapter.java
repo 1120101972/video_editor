@@ -34,12 +34,12 @@ public class CoverFlowAdapter extends BaseAdapter {
 	ImageButton mDelete;
 
 	RelativeLayout.LayoutParams mLayoutWrap_Wrap = new RelativeLayout.LayoutParams(
-			ViewGroup.LayoutParams.WRAP_CONTENT,
-			ViewGroup.LayoutParams.WRAP_CONTENT);
+			LayoutParams.WRAP_CONTENT,
+			LayoutParams.WRAP_CONTENT);
 	RelativeLayout.LayoutParams mLayoutFill_Wrap = new RelativeLayout.LayoutParams(
-			ViewGroup.LayoutParams.FILL_PARENT,
-			ViewGroup.LayoutParams.WRAP_CONTENT);
-	LayoutParams mLayoutGallery = new Gallery.LayoutParams(80, 60);
+			LayoutParams.FILL_PARENT,
+			LayoutParams.WRAP_CONTENT);
+	LayoutParams mLayoutGallery = new Gallery.LayoutParams(150, 120);
 
 	private Context mContext;
 

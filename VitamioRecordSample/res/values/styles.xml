@@ -4,7 +4,7 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-     <declare-styleable name="SlidingCard">
+    <declare-styleable name="SlidingCard">
         <attr name="sc_slidingMode">
             <enum name="left" value="0" />
             <enum name="right" value="1" />
@@ -25,8 +25,8 @@
         <attr name="sc_rightFadeEnabled" format="boolean" />
         <attr name="sc_rightFadeDegree" format="float" />
     </declare-styleable>
+
     <style name="AppBaseTheme" parent="android:Theme.Light">
-        
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -84,8 +84,8 @@
         <item name="android:textSize">12.0sp</item>
         <item name="android:layout_marginLeft">10dip</item>
     </style>
-    
-        <!-- 高级编辑Tab样式 -->
+
+    <!-- 高级编辑Tab样式 -->
     <style name="VideoEditTabStyle">
         <item name="android:textSize">16.0sp</item>
         <item name="android:textColor">@color/video_edit_text_color_selector</item>
@@ -97,8 +97,6 @@
         <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_weight">1.0</item>
     </style>
-    
-
 
     <!-- 自适应宽高 -->
     <style name="wrap">
@@ -115,13 +113,13 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
-   
+
     <!--  -->
     <style name="Theme.Translucent" parent="android:style/Theme.Translucent">
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
-    
+
     <!-- 对话框样式 -->
     <style name="Theme.Light.Dialog" parent="android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -163,7 +161,18 @@
         <item name="android:cacheColorHint">@color/white</item>
         <item name="android:layout_weight">0.0</item>
     </style>
-  
+    
+    <style name="listnormal">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:dividerHeight">1.0px</item>
+        <item name="android:divider">@null</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:drawSelectorOnTop">false</item>
+        <item name="android:cacheColorHint">@color/white</item>
+        <item name="android:layout_weight">0.0</item>
+    </style>
+
     <!-- 文字黑色18 -->
     <style name="black18">
         <item name="android:textColor">@color/black</item>
@@ -230,6 +239,20 @@
     <style name="detail_gray16">
         <item name="android:textColor">@color/detail_gray</item>
         <item name="android:textSize">16.0sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="detail_gray20">
+        <item name="android:textColor">@color/detail_gray</item>
+        <item name="android:textSize">20.0sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="detail_gray25">
+        <item name="android:textColor">@color/detail_gray</item>
+        <item name="android:textSize">25.0sp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
@@ -307,13 +330,19 @@
         <item name="android:layout_height">1px</item>
         <item name="android:background">@drawable/divider_line</item>
     </style>
+
+    <style name="deep_divider">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/gray</item>
+    </style>
     <!-- 分割线虚线 -->
     <style name="divider_dotted">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@drawable/divider_line_dotted</item>
     </style>
-    
+
     <!-- ScrollView -->
     <style name="scroll">
         <item name="android:scrollbars">none</item>
@@ -343,8 +372,6 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-
-  
     <!-- 右边间距30 -->
     <style name="marginRight30" parent="fill_width">
         <item name="android:layout_marginRight">30dip</item>
@@ -376,8 +403,6 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-
-
     <!-- 头部不可点击 -->
     <style name="item_top_n" parent="fill_width">
         <item name="android:clickable">false</item>
@@ -396,7 +421,7 @@
         <item name="android:paddingLeft">10dip</item>
         <item name="android:paddingBottom">10dip</item>
     </style>
-   
+
     <!-- 头部不可点击带checkbox -->
     <style name="item_bottom_n_check" parent="fill_width">
         <item name="android:clickable">false</item>
@@ -408,24 +433,15 @@
     <style name="item_middle_n" parent="item_top_n" />
     <!-- 中间不可点击(10dip) -->
     <style name="item_middle_n_10" parent="item_top_n_10" />
-   
+
     <!-- 四周圆角 不可点击 -->
     <style name="item_round_n" parent="item_top_n" />
-   
 
-   
     <!-- 右侧图片 -->
     <style name="right_icon" parent="wrap">
         <item name="android:layout_marginRight">10dip</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_alignParentRight">true</item>
     </style>
-    
-    
-
-    
-
-   
-
 
 </resources>

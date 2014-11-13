@@ -171,7 +171,7 @@ public class CoverFlow extends VerticalGallery {
 	public boolean onTouchEvent(MotionEvent event) {
 		Log.d("CovermyTag",
 				"CoverFlow onTouchEvent_event ===== " + event.getAction() + ""+super.onTouchEvent(event));
-		return true;
+		return super.onTouchEvent(event);
 	}
 
 	@Override

@@ -17,6 +17,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -30,7 +31,7 @@ import android.widget.Toast;
  * @since 2013-02-22
  * @version 1.00
  */
-public class TouchRoateImageView extends ImageView {
+public class TouchRoateImageView extends ImageView implements GestureDetector.OnGestureListener{
 
 	private final static float MIN_DEGREE = 0f;
 	private final static float MAX_DEGREE = 360f;
@@ -49,6 +50,7 @@ public class TouchRoateImageView extends ImageView {
 	RotateAnimation animate = null;
 	private TouchRoateImageView current;
 	private boolean if_animate = false;
+	private GestureDetector mGestureDetector;
 
 	public TouchRoateImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -60,6 +62,8 @@ public class TouchRoateImageView extends ImageView {
 		// windowHeight = dm.heightPixels; // 得到高度
 		currentContext = context;
 		current = this;
+		mGestureDetector = new GestureDetector(context, this);
+		mGestureDetector.setIsLongpressEnabled(true);
 
 		m = new Matrix();
 
@@ -75,7 +79,8 @@ public class TouchRoateImageView extends ImageView {
 
 	public boolean onTouchEvent(MotionEvent event) {
 		handleTouch(event);
-		return true;
+
+		return mGestureDetector.onTouchEvent(event);
 	}
 
 	private void handleTouch(MotionEvent event) {
@@ -95,6 +100,7 @@ public class TouchRoateImageView extends ImageView {
 			handleFinishTouch();
 			break;
 		}
+		
 		Log.d("TouchRoateImageView", "onTouchEvent" + event.getAction());
 	}
 
@@ -314,6 +320,44 @@ public class TouchRoateImageView extends ImageView {
 			setImageMatrix(m);
 		}
 
+	}
+
+	@Override
+	public boolean onDown(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean onFling(MotionEvent arg0, MotionEvent arg1, float arg2,
+			float arg3) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2,
+			float arg3) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }
