@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_des1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16.0sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_des2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:visibility="gone" />
+
+    <com.yixia.camera.demo.ui.widget.PageLoadingView
+        android:id="@+id/plv_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_load_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/load_error"
+        android:textColor="@color/loading_error_tv"
+        android:textSize="16.0sp" />
+
+    <Button
+        android:id="@+id/btn_refresh"
+        android:layout_width="80.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/refresh"
+        android:textColor="@color/loading_error_tv"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/ll_item_tuijian"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

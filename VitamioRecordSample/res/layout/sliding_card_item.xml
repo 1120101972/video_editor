@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/card_item_height" >
+
+    <RelativeLayout
+        android:id="@+id/sliding_card_content_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:background="@drawable/sliding_card_item_bg" >
+
+        <ImageView
+            android:id="@+id/user_imageview"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/main_item_height"
+            android:scaleType="centerCrop"
+            android:src="@drawable/testttt" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/main_item_height"
+            android:background="@drawable/sliding_card_item_image_bg" />
+
+        <ImageView
+            android:id="@+id/user_imageview_shady"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/main_item_height"
+            android:scaleType="center" />
+
+        <LinearLayout
+            android:id="@+id/operat_view"
+            android:layout_width="fill_parent"
+            android:layout_height="70dip"
+            android:layout_below="@id/user_imageview"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/nofeel_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:scaleType="center" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="15dip"
+                android:layout_marginTop="15dip" />
+
+            <ImageView
+                android:id="@+id/feel_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:scaleType="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sliding_card_info_view"
+            android:layout_width="fill_parent"
+            android:layout_height="56dip"
+            android:layout_alignBottom="@id/user_imageview"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/user_name_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dip"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="娜娜" />
+
+            <TextView
+                android:id="@+id/user_info_textview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dip"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="22岁   165cm" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

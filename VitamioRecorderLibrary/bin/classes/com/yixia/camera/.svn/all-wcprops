@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera
+END
+MediaRecorderBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera/MediaRecorderBase.java
+END
+MediaRecorderCustom.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera/MediaRecorderCustom.java
+END
+FFMpegUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera/FFMpegUtils.java
+END
+AudioRecorder.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera/AudioRecorder.java
+END
+MediaRecorderSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera/MediaRecorderSystem.java
+END
+MediaRecorderNative.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera/MediaRecorderNative.java
+END
+IMediaRecorder.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera/IMediaRecorder.java
+END
+VCamera.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/bitss-3glab/!svn/ver/1003/iBIT/VitamioRecorderLibrary/src/com/yixia/camera/VCamera.java
+END

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header_bar"
+    android:layout_width="fill_parent"
+    android:layout_height="45dp"
+    android:background="@color/blue" >
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dip"
+        android:clickable="true"
+        android:src="@drawable/bg_right_arrow"/>
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:paddingLeft="8.0dp"
+        android:singleLine="true"
+        android:text="你好"
+        android:textSize="20sp"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/ll_header_right"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dip"
+        android:gravity="right|center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/img_right1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dip"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/img_right2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+</RelativeLayout>

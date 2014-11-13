@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 头部高度 -->
+    <dimen name="header_height">48.0dip</dimen>
+    <!-- 头部字体大小 -->
+    <dimen name="header_textsize">18.0sp</dimen>
+    <!-- 筛选框宽 -->
+    <dimen name="pop_filter_width">320.0dip</dimen>
+    <!-- 筛选框高 -->
+    <dimen name="pop_filter_height">380.0dip</dimen>
+    <!-- 筛选头布按钮高 -->
+    <dimen name="filter_head_btn_height">48.0dp</dimen>
+    <!-- 筛选头布按钮宽 -->
+    <dimen name="filter_head_btn_width">106.5dp</dimen>
+
+    <!-- list_item下大号字体 -->
+    <dimen name="list_item_big">16.0sp</dimen>
+    <!-- list_item下中号字体 -->
+    <dimen name="list_item_middle">14.0sp</dimen>
+    <!-- list_item下小号字体 -->
+    <dimen name="list_item_small">12.0sp</dimen>
+    <!-- list_item下超大号字体 -->
+    <dimen name="list_item_huge">20.0sp</dimen>
+    <!-- 土司或者加载对话框字体大小 -->
+    <dimen name="toast_or_process">14.0sp</dimen>
+    <dimen name="bottom_tab_font_size">12.0sp</dimen>
+    <dimen name="bottom_tab_padding_up">4.0dip</dimen>
+    <dimen name="bottom_tab_padding_drawable">1.0dip</dimen>
+    <dimen name="main_tab_bar_height">48.0dip</dimen>
+    <dimen name="advertise_height">50.0dip</dimen>
+
+    <!-- 论坛部分的相关设置 -->
+    <dimen name="comment_title">16.0sp</dimen>
+    <dimen name="comment_publisher">14.0sp</dimen>
+    <dimen name="comment_time_and_num">14.0sp</dimen>
+    <dimen name="bottom_luntantab_padding_up">6.0dip</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="main_item_height">320dip</dimen>
+    <dimen name="card_item_height">420dip</dimen>
+    <dimen name="card_item_margin">10dip</dimen>
+
+</resources>

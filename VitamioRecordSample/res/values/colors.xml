@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="darkgray">#404040ff</color>
+    <color name="black">#000</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#0ff0ff</color>
+    <color name="lightgray">#c0c0c0ff</color>
+    <color name="white">#ffffffff</color>
+    <color name="yellow">#ffFF33ff</color>
+    <color name="blue">#ff0f81d9</color>
+    <color name="gray">#ff666666</color>
+    <color name="text_gray2">#ffC3C3C3</color>
+    <color name="magenta">#ff6699ff</color>
+    <color name="cyan">#66ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_black">#ff000000</color>
+    <color name="background_dark">#f0f0f0</color>
+    <color name="camera_bg">#2c2c2c</color>
+    <color name="camera_progress">#2980B9</color>
+    <color name="camera_progress_split">#005084</color>
+    <color name="camera_progress_three">#24ff00</color>
+    <color name="camera_progress_overflow">#1b5d89</color>
+    <color name="camera_theme_selected_bgcolor">#2980B9</color>
+    <color name="camera_bottom_press_bg">#1b1c1f</color>
+    <color name="title_background_color">#fcb840</color>
+    <color name="camera_progress_delete">#f68b2b</color>
+    <color name="translucent_background_80">#CC000000</color>
+    <color name="translucent_background_50">#7f000000</color>
+    <color name="transparent_black_40">#66000000</color>
+    <color name="transparent_black_85">#DA000000</color>
+    <color name="transparent_black_30">#4D000000</color>
+
+    <color name="choose_eara_item_press_color">#f4f4f4</color>
+    <color name="wuse">#00000000</color>
+    <color name="black_news">#494949</color>
+    <color name="black_jiaju">#ff010101</color>
+    <color name="dark_red">#fa0202</color>
+    <color name="a_orange">#ff6600</color>
+    <color name="orange">#ff6600</color>
+    <color name="blue_01">#00AEFF</color>
+    <color name="gray_green">#669934</color>
+    <color name="blue_02">#0099ff</color>
+    <color name="blue_04">#4b95f2</color>
+    <color name="light_green">#0cc102</color>
+    <color name="light_blue">#42A5EF</color>
+    <color name="light_gray">#f0f0f0</color>
+    <color name="light_grayone">#fafafa</color>
+    <color name="gray_news">#666666</color>
+    <color name="gold_red">#e20179</color>
+    <color name="gold_yellow">#ff8000</color>
+    <color name="header_divider">#4c90d3e8</color>
+    <color name="header_btn_press">#ff017bd6</color>
+    <color name="header_btn_text">#ffe6ecef</color>
+    <color name="header_bar">#0092ff</color>
+    <color name="new_open">#077fd9</color>
+    <color name="discount">#ff7200</color>
+    <color name="window_bg">#fff5f5f5</color>
+    <color name="loading_error_tv">#ff666666</color>
+    <color name="dividerline">#d9d9d9</color>
+    <color name="dividerline_ideabooks">#d2d2d2</color>
+    <color name="filter_content_bg_map">#ddededed</color>
+    <color name="filter_content_bg">#ffededed</color>
+    <color name="filter_pop_tv">#ff70bbea</color>
+    <color name="pop_border">#f2464646</color>
+    <color name="home_item_normal">#fff1efef</color>
+    <color name="home_item_press">#fbf6e9</color>
+    <color name="home_item_tv">#626465</color>
+    <color name="main_tab_bar_bg">#ff2e2e2e</color>
+    <color name="main_tab_btn_normal">#ff2e2e2e</color>
+    <color name="main_tab_btn_pressed">#ff181818</color>
+    <color name="main_tab_tv_pressed">#ff29A1FB</color>
+    <color name="main_tab_tv_normal">#ff666666</color>
+    <color name="list_item_normal">#ffffffff</color>
+    <color name="list_item_normal1">#fff0f0f0</color>
+    <color name="list_item_selected">#ffb4dffb</color>
+    <color name="shape_bg">#ffcccccc</color>
+    <color name="shape_line">#ffcccccc</color>
+    <color name="list_item_tv_money">#ff0088E7</color>
+    <color name="filter_border">#f2464646</color>
+    <color name="filter_item_dark">#7f000000</color>
+    <color name="xq">#1b1b1b</color>
+    <color name="more_bg">#ffdbe7e7</color>
+    <color name="home_item">#E7E7E7</color>
+    <color name="home_content">#F1EFEF</color>
+    <color name="home_item_n">#f7f7f7</color>
+    <color name="home_item_s">#b4dffb </color>
+    <color name="group_bg">#ffe9e7e7</color>
+    <color name="tg_list_image">#353535</color>
+    <color name="detail_gray">#5f5f5f</color>
+    <color name="window_deep_bg">#eaeeef</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <!-- <color name="viewfinder_laser">#ffcc0000</color> -->
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#61000000</color>
+    <color name="viewfinder_laser">#ff04fd21</color>
+    <color name="viewfinder_mask_line">#ff06ccfe</color>
+    <color name="viewfinder_mask_corner">#ff068cfe</color>
+    <color name="new_pic_header">#ff141414</color>
+    <color name="new_pic_header_bg">#66000000</color>
+    <color name="agent_norml_bg">#e4e4e4</color>
+    <color name="home_gray">#909090</color>
+    <color name="city1">#323232</color>
+    <color name="city2">#1f1f1f</color>
+    <color name="city3">#787878</color>
+    <color name="city4">#dedede</color>
+    <color name="gray68">#686868</color>
+    <color name="gray_ae">#AEAEAE</color>
+    <!-- 论坛部分，发帖人和日期颜色 -->
+    <color name="comment_publisherandrtime">#666666</color>
+    <!-- 看房团 -->
+    <color name="sft_text_gray2">#7a7a7a</color>
+    <color name="sft_text_blue">#0c7cd6</color>
+    <color name="sft_text_gray">#656565</color>
+    <color name="sft_text_gray1">#969696</color>
+    <color name="sft_text_0">#f9a94d</color>
+    <color name="sft_text_1">#fc7836</color>
+    <color name="sft_text_2">#69c41e</color>
+    <color name="kft_bottom">#E5E5E5</color>
+    <color name="kft_center">#EEEEEE</color>
+    <color name="kft_text_black">#999999</color>
+    <!-- 评估 -->
+    <color name="gray_888">#888888</color>
+    <color name="gray_999">#d2d2d2</color>
+    <color name="gray_background">#efefef</color>
+    <color name="l_blue">#7aaae8</color>
+    <color name="light_purple">#d6cfe1</color>
+    <color name="gray_blue">#05519a</color>
+    <color name="light_purple1">#e8e1f3</color>
+    <color name="luntan_black">#333333</color>
+    <color name="gray_d6">#333333</color>
+    <!-- 论坛 -->
+    <color name="luntan_orange">#FE8F1F</color>
+    <color name="luntan_gray">#808080</color>
+    <color name="luntan_input_gray">#969696</color>
+    <color name="luntan_yellow">#FF9600</color>
+    <color name="luntan_tab_gray">#646464</color>
+    <color name="luntan_tab_item_gray">#444444</color>
+    <color name="luntan_filter_content_bg">#E3E3E3</color>
+    <color name="luntan_msg_gray">#A5A5A5</color>
+    <color name="luntan_red">#EA4A47</color>
+    <color name="luntan_ssp_item">#9e7e6b</color>
+    <!-- 聊天 -->
+    <color name="chat_record_gray">#707070</color>
+    <!-- 呼经纪人 -->
+    <color name="black_bg">#33373E</color>
+    <color name="black_light">#9a9a9a</color>
+    <color name="blue_03">#43A2EF</color>
+    <color name="gray_01">#5b5b5b</color>
+    <color name="agent_none">#0088e7</color>
+
+    <!-- 我的发布 -->
+    <color name="white_01">#fefefe</color>
+    <!-- 首页 -->
+    <color name="zshome_item_press">#f4f4f4</color>
+    <color name="ad_bg">#fbfbfb</color>
+    <color name="zshome_bg">#e6e6e6</color>
+    <!-- 看房团 -->
+    <color name="blue_kft">#4b96f3</color>
+    <!-- 聊天中经纪人在线状态 -->
+    <color name="chat_isOnLine_bg">#fbeadb</color>
+    <color name="chat_isOnline_tv">#333333</color>
+
+    <!-- 扫一扫 -->
+    <color name="saoma">#181818</color>
+    <color name="jiejing">#111111</color>
+    <!-- 找房雷达 -->
+    <color name="zfld_proj">#ffffff</color>
+    <!-- 快筛条 -->
+    <color name="kst_text_selected">#4b95f2</color>
+    <color name="luntan_list_top">#4b95f2</color>
+	<!-- 周边房价 -->
+	<color name="green_pinggu">#09942c</color>
+	<color name="blue_pinggu">#4b95f2</color>
+	<color name="red_pinggu">#f24c00</color>
+	<color name="grey_pinggu">#e8e8e8</color>
+</resources>

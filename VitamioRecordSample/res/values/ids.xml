@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="header_btn" type="id">false</item>
+    <item name="header_bar" type="id">false</item>
+    <item name="process_page" type="id">false</item>
+    <item name="btn_search" type="id">false</item>
+    <item name="btn_ml" type="id">false</item>
+    <item name="decode" type="id"/>
+    <item name="decode_failed" type="id"/>
+    <item name="decode_succeeded" type="id"/>
+    <item name="launch_product_query" type="id"/>
+    <item name="quit" type="id"/>
+    <item name="restart_preview" type="id"/>
+    <item name="return_scan_result" type="id"/>
+    <item name="auto_focus" type="id"/>
+    <item name="btn_tt_click" type="id"></item>
+    
+    <item name="rl_home_zixun1" type="id"></item>
+    <item name="rl_home_zixunMore" type="id"></item>
+
+    <!-- 论坛随手拍使用 -->
+    <item name="scrapped_view" type="id"/>
+    <!-- 论坛信息使用 -->
+    <item name="luntan_message" type="id"/>
+   	<!-- 家居模块  -->
+    <item name="ib_share" type="id"/>
+    <item name="ib_add" type="id"/>
+   	
+</resources>
