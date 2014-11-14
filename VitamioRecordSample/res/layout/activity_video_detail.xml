@@ -1,101 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <com.yixia.camera.demo.ui.widget.SurfaceVideoView
-        android:id="@+id/videoview"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:fitsSystemWindows="true"
-        android:saveEnabled="true" />
+    android:background="@color/white" >
 
     <RelativeLayout
-        android:id="@+id/rl_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:layout_below="@+id/videoview" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp" />
+
+        <com.yixia.camera.demo.ui.widget.SurfaceVideoView
+            android:id="@+id/videoview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:fitsSystemWindows="true"
+            android:background="@color/transparent"
+            android:saveEnabled="true" />
 
         <ImageView
-            android:id="@+id/iv_like"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/page_loading_bar" />
+            android:id="@+id/play_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:contentDescription="@string/imageview_content_description"
+            android:src="@drawable/play_big"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/rl_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/videoview" >
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/page_loading_bar" />
+
+            <TextView
+                android:id="@+id/tv_like"
+                style="@style/detail_gray20"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_like"
+                android:text="喜欢" />
+
+            <ImageView
+                android:id="@+id/iv_store"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_like"
+                android:background="@drawable/page_loading_bar" />
+
+            <TextView
+                android:id="@+id/tv_store"
+                style="@style/detail_gray20"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_store"
+                android:text="收藏" />
+
+            <ImageView
+                android:id="@+id/iv_share"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@+id/tv_share"
+                android:background="@drawable/page_loading_bar" />
+
+            <TextView
+                android:id="@+id/tv_share"
+                style="@style/detail_gray20"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="分享" />
+
+            <ImageView
+                style="@style/deep_divider"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_like"
-            style="@style/detail_gray20"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/iv_like"
-            android:text="喜欢" />
-
-        <ImageView
-            android:id="@+id/iv_store"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
+            android:id="@+id/tv_latest"
+            style="@style/detail_gray22"
+            android:layout_below="@+id/rl_bar"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tv_like"
-            android:background="@drawable/page_loading_bar" />
-
-        <TextView
-            android:id="@+id/tv_store"
-            style="@style/detail_gray20"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/iv_store"
-            android:text="收藏" />
-
-        <ImageView
-            android:id="@+id/iv_share"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@+id/tv_share"
-            android:background="@drawable/page_loading_bar" />
-
-        <TextView
-            android:id="@+id/tv_share"
-            style="@style/detail_gray20"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
-            android:text="分享" />
+            android:layout_marginTop="10dp"
+            android:text="最新热评" />
 
-        <ImageView
-            style="@style/deep_divider"
-            android:layout_alignParentBottom="true" />
+        <EditText
+            android:id="@+id/tv_comment"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/tv_latest"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:hint="我来说两句" />
+
+        <com.yixia.camera.demo.ui.widget.MyListView
+            android:id="@+id/lv_comment"
+            style="@style/listnormal"
+            android:layout_below="@+id/tv_comment" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_latest"
-        style="@style/detail_gray25"
-        android:layout_below="@+id/rl_bar"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="最新热评" />
-
-    <EditText
-        android:id="@+id/tv_comment"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/tv_latest"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:hint="我来说两句" />
-
-    <ListView
-        android:id="@+id/lv_comment"
-        style="@style/listnormal"
-        android:layout_below="@+id/tv_comment" >
-    </ListView>
-
-</RelativeLayout>
+</ScrollView>

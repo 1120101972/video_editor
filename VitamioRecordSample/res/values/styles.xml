@@ -165,7 +165,7 @@
     <style name="listnormal">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:dividerHeight">1.0px</item>
+        <item name="android:dividerHeight">0px</item>
         <item name="android:divider">@null</item>
         <item name="android:fastScrollEnabled">true</item>
         <item name="android:drawSelectorOnTop">false</item>
@@ -250,9 +250,9 @@
         <item name="android:layout_width">wrap_content</item>
     </style>
 
-    <style name="detail_gray25">
+    <style name="detail_gray22">
         <item name="android:textColor">@color/detail_gray</item>
-        <item name="android:textSize">25.0sp</item>
+        <item name="android:textSize">22.0sp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
@@ -334,7 +334,7 @@
     <style name="deep_divider">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">1px</item>
-        <item name="android:background">@color/gray</item>
+        <item name="android:background">@color/black_light</item>
     </style>
     <!-- 分割线虚线 -->
     <style name="divider_dotted">

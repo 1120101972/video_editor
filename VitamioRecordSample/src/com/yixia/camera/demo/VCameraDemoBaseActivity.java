@@ -61,6 +61,8 @@ public abstract class VCameraDemoBaseActivity extends FragmentActivity implement
 	protected BaseLayout baseLayout;
 	
 	public abstract void initView();
+	
+	public abstract void initData();
 
 	/**
 	 * 设置布局
@@ -92,6 +94,8 @@ public abstract class VCameraDemoBaseActivity extends FragmentActivity implement
 				baseLayout.img_right1.setOnClickListener(this);
 			if (baseLayout.btn_back != null)
 				baseLayout.btn_back.setOnClickListener(this);
+			if (baseLayout.tv_button != null)
+				baseLayout.tv_button.setOnClickListener(this);
 			// if (baseLayout.ll_city_header != null)
 			// baseLayout.ll_city_header.setOnClickListener(this);
 		}
@@ -145,9 +149,9 @@ public abstract class VCameraDemoBaseActivity extends FragmentActivity implement
 		case R.id.btn_back:
 			exit();
 			break;
-//		case R.id.more:
-//			handleOnClickMoreView();
-//			break;
+		case R.id.tv_button:
+			handleHeaderTextEvent();
+			break;
 
 		case R.id.btn_refresh:
 			handleOnClickProgress();
@@ -312,6 +316,13 @@ public abstract class VCameraDemoBaseActivity extends FragmentActivity implement
 	 * 
 	 */
 	protected void handleHeaderEvent1() {
+	}
+	
+	/**
+	 * 处理Header右边按钮点击事件
+	 * 
+	 */
+	protected void handleHeaderTextEvent() {
 	}
 
 

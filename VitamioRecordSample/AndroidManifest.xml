@@ -37,11 +37,17 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/CameraTheme" >
-             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.VideoDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraTheme" >
         </activity>
         <activity
             android:name=".ui.record.MediaRecorderActivity"
@@ -49,7 +55,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/CameraTheme" >
-           
         </activity>
         <activity
             android:name=".ui.record.MediaPreviewActivity"

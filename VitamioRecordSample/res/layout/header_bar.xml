@@ -3,17 +3,18 @@
     android:id="@+id/header_bar"
     android:layout_width="fill_parent"
     android:layout_height="45dp"
-    android:background="@color/blue" >
+    android:background="@color/black" >
 
     <ImageView
         android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="7dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_margin="5dip"
         android:clickable="true"
-        android:src="@drawable/bg_right_arrow"/>
+        android:src="@drawable/title_text_left"/>
 
     <TextView
         android:id="@+id/tv_header"
@@ -43,14 +44,24 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="5dip"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/img_right2"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="5dp"
-            android:visibility="visible" />
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="发布"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_marginRight="5dp"
+            android:visibility="gone" />
     </LinearLayout>
 
 </RelativeLayout>

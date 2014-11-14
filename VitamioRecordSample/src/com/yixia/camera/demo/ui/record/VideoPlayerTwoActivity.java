@@ -87,9 +87,9 @@ public class VideoPlayerTwoActivity extends BaseActivity implements
 		mVideoView = (SurfaceVideoView) findViewById(R.id.videoview);
 		mPlayerStatus = findViewById(R.id.play_status);
 		mLoading = findViewById(R.id.loading);
-		btn_upload = (Button) findViewById(R.id.btn_upload);
-		btn_upload.setOnClickListener(this);
-		btn_upload.setVisibility(View.GONE);
+		// btn_upload = (Button) findViewById(R.id.btn_upload);
+		// btn_upload.setOnClickListener(this);
+		// btn_upload.setVisibility(View.GONE);
 
 		mVideoView.setOnPreparedListener(this);
 		mVideoView.setOnPlayStateListener(this);
@@ -272,14 +272,14 @@ public class VideoPlayerTwoActivity extends BaseActivity implements
 		case R.id.root:
 			finish();
 			break;
-		case R.id.btn_upload:
-			if (post == null) {
-				post = new HttpPost(
-						"http://10.1.112.123:8080/vedio/upload.action");
-			}
-			Toast.makeText(VideoPlayerTwoActivity.this, "开始上传", 0).show();
-			new Thread(new postLostFound()).start();
-			break;
+		// case R.id.btn_upload:
+		// if (post == null) {
+		// post = new HttpPost(
+		// "http://10.1.112.123:8080/vedio/upload.action");
+		// }
+		// Toast.makeText(VideoPlayerTwoActivity.this, "开始上传", 0).show();
+		// new Thread(new postLostFound()).start();
+		// break;
 		case R.id.videoview:
 			if (mVideoView.isPlaying())
 				mVideoView.pause();

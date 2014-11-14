@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imgPeople"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginRight="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/d_touxiang" />
@@ -45,12 +45,12 @@
         android:layout_toRightOf="@+id/imgPeople"
         android:text="我来发评论啦，看看好不好用"
         android:textColor="@color/black"
+        android:layout_marginBottom="5dp"
         android:textSize="14sp" />
 
     <TextView
         style="@style/deep_divider"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/imgPeople" />
 
 </RelativeLayout>

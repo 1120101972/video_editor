@@ -1,5 +1,6 @@
 package com.yixia.camera.demo.ui.record;
 
+import java.io.Console;
 import java.io.File;
 
 import org.apache.http.HttpResponse;
@@ -27,14 +28,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yixia.camera.demo.R;
+import com.yixia.camera.demo.VCameraDemoBaseActivity;
 import com.yixia.camera.demo.ui.BaseActivity;
 import com.yixia.camera.demo.ui.widget.SurfaceVideoView;
 import com.yixia.camera.util.DeviceUtils;
@@ -46,7 +50,7 @@ import com.yixia.camera.util.StringUtils;
  * @author tangjun
  * 
  */
-public class VideoPlayerActivity extends BaseActivity implements
+public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 		SurfaceVideoView.OnPlayStateListener, OnErrorListener,
 		OnPreparedListener, OnClickListener, OnCompletionListener,
 		OnInfoListener {
@@ -66,7 +70,6 @@ public class VideoPlayerActivity extends BaseActivity implements
 	 * 上传文件
 	 */
 	private HttpPost post;
-	private Button btn_upload;
 	private static final int POST_SUCCESS = 10024;
 	private static final int POST_FAILURE = 10025;
 
@@ -79,17 +82,18 @@ public class VideoPlayerActivity extends BaseActivity implements
 		mPath = getIntent().getStringExtra("path");
 		// mPath = "http://10.1.112.123:6060/vedio/hello.mp4" ;
 		Toast.makeText(VideoPlayerActivity.this, mPath, 0).show();
+		Log.d(this.getClass().toString(), mPath);
 		if (StringUtils.isEmpty(mPath)) {
 			finish();
 			return;
 		}
 
-		setContentView(R.layout.activity_video_player);
+		setView(R.layout.activity_video_player, LAYOUT_TYPE_HEADER);
+
+		baseLayout.setTitleAndButton("视频信息", "发布");
 		mVideoView = (SurfaceVideoView) findViewById(R.id.videoview);
 		mPlayerStatus = findViewById(R.id.play_status);
 		mLoading = findViewById(R.id.loading);
-		btn_upload = (Button) findViewById(R.id.btn_upload);
-		btn_upload.setOnClickListener(this);
 
 		mVideoView.setOnPreparedListener(this);
 		mVideoView.setOnPlayStateListener(this);
@@ -97,7 +101,16 @@ public class VideoPlayerActivity extends BaseActivity implements
 		mVideoView.setOnClickListener(this);
 		mVideoView.setOnInfoListener(this);
 		mVideoView.setOnCompletionListener(this);
-		
+		baseLayout.btn_back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				finish();
+
+			}
+		});
+
 		// mVideoView
 		// .setOnVideoSizeChangedListener(new OnVideoSizeChangedListener() {
 		//
@@ -218,7 +231,7 @@ public class VideoPlayerActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 		if (mVideoView != null) {
 			mVideoView.release();
 			mVideoView = null;
@@ -271,19 +284,26 @@ public class VideoPlayerActivity extends BaseActivity implements
 	}
 
 	@Override
+	protected void handleHeaderTextEvent() {
+		// TODO Auto-generated method stub
+		super.handleHeaderTextEvent();
+
+		toast("OK");
+		if (post == null) {
+			post = new HttpPost("http://10.1.112.123:8080/vedio/upload.action");
+		}
+		Toast.makeText(VideoPlayerActivity.this, "开始上传", 0).show();
+		new Thread(new postLostFound()).start();
+
+	}
+
+	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.root:
 			finish();
 			break;
-		case R.id.btn_upload:
-			if (post == null) {
-				post = new HttpPost(
-						"http://10.1.112.123:8080/vedio/upload.action");
-			}
-			Toast.makeText(VideoPlayerActivity.this, "开始上传", 0).show();
-			new Thread(new postLostFound()).start();
-			break;
+
 		case R.id.videoview:
 			if (mVideoView.isPlaying())
 				mVideoView.pause();
@@ -323,6 +343,18 @@ public class VideoPlayerActivity extends BaseActivity implements
 			break;
 		}
 		return false;
+	}
+
+	@Override
+	public void initView() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void initData() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

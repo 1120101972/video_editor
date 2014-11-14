@@ -39,7 +39,7 @@ public class CoverFlowAdapter extends BaseAdapter {
 	RelativeLayout.LayoutParams mLayoutFill_Wrap = new RelativeLayout.LayoutParams(
 			LayoutParams.FILL_PARENT,
 			LayoutParams.WRAP_CONTENT);
-	LayoutParams mLayoutGallery = new Gallery.LayoutParams(150, 120);
+	LayoutParams mLayoutGallery = new Gallery.LayoutParams(80, 50);
 
 	private Context mContext;
 

@@ -1,6 +1,7 @@
 package com.yixia.camera.demo.activity;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -32,10 +33,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.yixia.camera.demo.R;
+import com.yixia.camera.demo.VCameraDemoBaseActivity;
+import com.yixia.camera.demo.adapter.CommentListAdapter;
+import com.yixia.camera.demo.bean.CommentData;
 import com.yixia.camera.demo.ui.BaseActivity;
+import com.yixia.camera.demo.ui.widget.MyListView;
 import com.yixia.camera.demo.ui.widget.SurfaceVideoView;
 import com.yixia.camera.util.DeviceUtils;
 import com.yixia.camera.util.StringUtils;
@@ -46,7 +52,7 @@ import com.yixia.camera.util.StringUtils;
  * @author tangjun
  * 
  */
-public class VideoDetailActivity extends BaseActivity implements
+public class VideoDetailActivity extends VCameraDemoBaseActivity implements
 		SurfaceVideoView.OnPlayStateListener, OnErrorListener,
 		OnPreparedListener, OnClickListener, OnCompletionListener,
 		OnInfoListener {
@@ -56,13 +62,14 @@ public class VideoDetailActivity extends BaseActivity implements
 	/** 暂停按钮 */
 	private View mPlayerStatus;
 	private View mLoading;
+	private MyListView lv_comment;
 
 	/** 播放路径 */
 	private String mPath;
 	/** 是否需要回复播放 */
 	private boolean mNeedResume;
-
-
+	/** 评论数据 */
+	private ArrayList<CommentData> datas = new ArrayList<CommentData>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,27 +77,20 @@ public class VideoDetailActivity extends BaseActivity implements
 		// 防止锁屏
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-		mPath = getIntent().getStringExtra("path");
+		// mPath = getIntent().getStringExtra("path");
 		// mPath = "http://10.1.112.123:6060/vedio/hello.mp4" ;
+		mPath = "/mnt/sdcard/DCIM/Camera/VCameraDemo/1415963312767.mp4";
 		Toast.makeText(VideoDetailActivity.this, mPath, 0).show();
 		if (StringUtils.isEmpty(mPath)) {
 			finish();
 			return;
 		}
+		setView(R.layout.activity_video_detail, LAYOUT_TYPE_HEADER);
+		baseLayout.setHeaderBarStyle("我的原创视频", 0, 0);
 
-		setContentView(R.layout.activity_video_player);
-		mVideoView = (SurfaceVideoView) findViewById(R.id.videoview);
-		mPlayerStatus = findViewById(R.id.play_status);
-		mLoading = findViewById(R.id.loading);
+		initView();
+		initData();
 
-
-		mVideoView.setOnPreparedListener(this);
-		mVideoView.setOnPlayStateListener(this);
-		mVideoView.setOnErrorListener(this);
-		mVideoView.setOnClickListener(this);
-		mVideoView.setOnInfoListener(this);
-		mVideoView.setOnCompletionListener(this);
-		
 		// mVideoView
 		// .setOnVideoSizeChangedListener(new OnVideoSizeChangedListener() {
 		//
@@ -110,8 +110,35 @@ public class VideoDetailActivity extends BaseActivity implements
 		// }
 		// });
 
-		findViewById(R.id.root).setOnClickListener(this);
+	}
+
+	@Override
+	public void initView() {
+		// TODO Auto-generated method stub
+		mVideoView = (SurfaceVideoView) findViewById(R.id.videoview);
+		mPlayerStatus = findViewById(R.id.play_status);
+		mLoading = findViewById(R.id.loading);
+
+		mVideoView.setOnPreparedListener(this);
+		mVideoView.setOnPlayStateListener(this);
+		mVideoView.setOnErrorListener(this);
+		mVideoView.setOnClickListener(this);
+		mVideoView.setOnInfoListener(this);
+		mVideoView.setOnCompletionListener(this);
+
+		baseLayout.btn_back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+
+		// findViewById(R.id.root).setOnClickListener(this);
 		mVideoView.setVideoPath(mPath);
+
+		lv_comment = (MyListView) findViewById(R.id.lv_comment);
 
 	}
 
@@ -129,11 +156,11 @@ public class VideoDetailActivity extends BaseActivity implements
 					Toast.makeText(VideoDetailActivity.this, "上传成功", 0).show();
 					mPath = "http://10.1.112.123:5080/live/vedio/"
 							+ object.getString("message");
-//					Intent intent = new Intent();
-//					intent.setClass(VideoDetailActivity.this,
-//							VideoPlayerTwoActivity.class);
-//					intent.putExtra("path", mPath);
-//					startActivity(intent);
+					// Intent intent = new Intent();
+					// intent.setClass(VideoDetailActivity.this,
+					// VideoPlayerTwoActivity.class);
+					// intent.putExtra("path", mPath);
+					// startActivity(intent);
 
 				} else {
 					Toast.makeText(VideoDetailActivity.this, "上传成功失败，请重新上传", 0)
@@ -149,43 +176,43 @@ public class VideoDetailActivity extends BaseActivity implements
 		}
 	};
 
-//	private class postLostFound implements Runnable {
-//
-//		@Override
-//		public void run() {
-//			// TODO Auto-generated method stub
-//			Message message = new Message();
-//			MultipartEntity entity = new MultipartEntity();
-//			try {
-//
-//				File file = new File(mPath);
-//				entity.addPart("uploadfile", new FileBody(file));
-//				post.setEntity(entity);
-//				// 请求服务器
-//				BasicHttpParams httpParams = new BasicHttpParams();
-//				HttpConnectionParams.setConnectionTimeout(httpParams, 30000);
-//				HttpConnectionParams.setSoTimeout(httpParams, 30000);
-//
-//				HttpResponse response = new DefaultHttpClient(httpParams)
-//						.execute(post);
-//				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-//					message.what = POST_SUCCESS;
-//					String strResult = EntityUtils.toString(response
-//							.getEntity());
-//					message.obj = strResult;
-//
-//				} else {
-//					message.what = POST_FAILURE;
-//				}
-//			} catch (Exception e) {
-//				message.what = 0;
-//			} finally {
-//				handler.sendMessage(message);
-//			}
-//
-//		}
-//
-//	}
+	// private class postLostFound implements Runnable {
+	//
+	// @Override
+	// public void run() {
+	// // TODO Auto-generated method stub
+	// Message message = new Message();
+	// MultipartEntity entity = new MultipartEntity();
+	// try {
+	//
+	// File file = new File(mPath);
+	// entity.addPart("uploadfile", new FileBody(file));
+	// post.setEntity(entity);
+	// // 请求服务器
+	// BasicHttpParams httpParams = new BasicHttpParams();
+	// HttpConnectionParams.setConnectionTimeout(httpParams, 30000);
+	// HttpConnectionParams.setSoTimeout(httpParams, 30000);
+	//
+	// HttpResponse response = new DefaultHttpClient(httpParams)
+	// .execute(post);
+	// if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+	// message.what = POST_SUCCESS;
+	// String strResult = EntityUtils.toString(response
+	// .getEntity());
+	// message.obj = strResult;
+	//
+	// } else {
+	// message.what = POST_FAILURE;
+	// }
+	// } catch (Exception e) {
+	// message.what = 0;
+	// } finally {
+	// handler.sendMessage(message);
+	// }
+	//
+	// }
+	//
+	// }
 
 	@Override
 	public void onResume() {
@@ -211,7 +238,7 @@ public class VideoDetailActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 		if (mVideoView != null) {
 			mVideoView.release();
 			mVideoView = null;
@@ -269,14 +296,14 @@ public class VideoDetailActivity extends BaseActivity implements
 		case R.id.root:
 			finish();
 			break;
-//		case R.id.btn_upload:
-//			if (post == null) {
-//				post = new HttpPost(
-//						"http://10.1.112.123:8080/vedio/upload.action");
-//			}
-//			Toast.makeText(VideoDetailActivity.this, "开始上传", 0).show();
-//			new Thread(new postLostFound()).start();
-//			break;
+		// case R.id.btn_upload:
+		// if (post == null) {
+		// post = new HttpPost(
+		// "http://10.1.112.123:8080/vedio/upload.action");
+		// }
+		// Toast.makeText(VideoDetailActivity.this, "开始上传", 0).show();
+		// new Thread(new postLostFound()).start();
+		// break;
 		case R.id.videoview:
 			if (mVideoView.isPlaying())
 				mVideoView.pause();
@@ -318,5 +345,23 @@ public class VideoDetailActivity extends BaseActivity implements
 		return false;
 	}
 
-}
+	@Override
+	public void initData() {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < 5; i++) {
+			CommentData data = new CommentData(
+					"小雪",
+					"真是太萌了受不了了~~",
+					"2014-11-14 19:36",
+					"http://img.tupianzj.com/uploads/allimg/141113/3-141113114414.jpg",
+					i);
+			datas.add(data);
+		}
 
+		CommentListAdapter adapter = new CommentListAdapter(
+				VideoDetailActivity.this, datas);
+		lv_comment.setAdapter(adapter);
+
+	}
+
+}

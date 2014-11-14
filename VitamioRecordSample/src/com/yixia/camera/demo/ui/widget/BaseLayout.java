@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 public class BaseLayout extends RelativeLayout {
 
 	private static final int HEADER = 1;
@@ -22,6 +21,7 @@ public class BaseLayout extends RelativeLayout {
 	private Context mContext;
 	public ImageView btn_back;
 	public ImageView img_right2, img_right1;
+	public TextView tv_button;
 	private TextView tv_header;
 	private View ll_header_right, header_bar;
 
@@ -29,7 +29,6 @@ public class BaseLayout extends RelativeLayout {
 	public Button btn_refresh;
 	public PageLoadingView plv_loading;
 	public TextView tv_load_error, tv_city_header, tv_des1, tv_des2;
-
 
 	public BaseLayout(Context context, int layoutResourceId, int type) {
 		super(context);
@@ -43,7 +42,7 @@ public class BaseLayout extends RelativeLayout {
 		case HEADER:
 			setHeaderBar(layoutInflater);
 			break;
-		
+
 		case HEADERANDPROGRESS:
 			setHeaderBar(layoutInflater);
 			setProgressBg(layoutInflater);
@@ -54,8 +53,6 @@ public class BaseLayout extends RelativeLayout {
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 				LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 
-		
-
 		if (progressbg != null) {
 			params.addRule(RelativeLayout.BELOW, R.id.process_page);
 		} else {
@@ -65,13 +62,13 @@ public class BaseLayout extends RelativeLayout {
 
 	}
 
-
 	protected void setHeaderBar(LayoutInflater layoutInflater) {
 		header_bar = layoutInflater.inflate(R.layout.header_bar, null);
 		tv_header = (TextView) header_bar.findViewById(R.id.tv_header);
 		btn_back = (ImageView) header_bar.findViewById(R.id.btn_back);
 		img_right2 = (ImageView) header_bar.findViewById(R.id.img_right2);
 		img_right1 = (ImageView) header_bar.findViewById(R.id.img_right1);
+		tv_button = (TextView) header_bar.findViewById(R.id.tv_button);
 		ll_header_right = header_bar.findViewById(R.id.ll_header_right);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
@@ -111,7 +108,9 @@ public class BaseLayout extends RelativeLayout {
 			ll_header_right.setVisibility(View.INVISIBLE);
 		} else {
 			ll_header_right.setVisibility(View.VISIBLE);
-			
+			tv_button.setVisibility(View.VISIBLE);
+			tv_button.setText(btn_text);
+
 		}
 	}
 
@@ -139,4 +138,3 @@ public class BaseLayout extends RelativeLayout {
 		}
 	}
 }
-

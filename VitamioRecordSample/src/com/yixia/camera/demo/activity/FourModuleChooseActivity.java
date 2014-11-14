@@ -59,18 +59,27 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 		// cf.setGravity(Gravity.CENTER_HORIZONTAL);
 	}
 
+	@Override
+	protected void handleHeaderEvent1() {
+		// TODO Auto-generated method stub
+		super.handleHeaderEvent1();
+		startActivityForAnima(new Intent().setClass(
+				FourModuleChooseActivity.this, VideoDetailActivity.class));
+
+	}
+
 	public void setMargin(int height) {
-//		RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
-//				RelativeLayout.LayoutParams.WRAP_CONTENT,
-//				RelativeLayout.LayoutParams.WRAP_CONTENT);
-//		mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-//		mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
-//		mp.setMargins(0, 0, 0, -(height / 2));
-//		iv_change_module.setLayoutParams(mp);
-//		Toast.makeText(
-//				FourModuleChooseActivity.this,
-//				StringUtils.px2dip(FourModuleChooseActivity.this, height / 2)
-//						+ "", 0).show();
+		// RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
+		// RelativeLayout.LayoutParams.WRAP_CONTENT,
+		// RelativeLayout.LayoutParams.WRAP_CONTENT);
+		// mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		// mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		// mp.setMargins(0, 0, 0, -(height / 2));
+		// iv_change_module.setLayoutParams(mp);
+		// Toast.makeText(
+		// FourModuleChooseActivity.this,
+		// StringUtils.px2dip(FourModuleChooseActivity.this, height / 2)
+		// + "", 0).show();
 
 	}
 
@@ -132,6 +141,12 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 				+ super.onTouchEvent(event));
 
 		return super.onTouchEvent(event);
+	}
+
+	@Override
+	public void initData() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

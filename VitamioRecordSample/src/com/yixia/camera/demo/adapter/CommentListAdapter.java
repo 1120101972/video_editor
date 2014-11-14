@@ -1,5 +1,6 @@
 package com.yixia.camera.demo.adapter;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -17,10 +18,10 @@ import android.widget.TextView;
 
 public class CommentListAdapter extends BaseAdapter {
 
-	private LinkedList<CommentData> data;
+	private ArrayList<CommentData> data;
 	private Activity activity;
 
-	public CommentListAdapter(Activity activity, LinkedList<CommentData> data) {
+	public CommentListAdapter(Activity activity, ArrayList<CommentData> data) {
 		this.activity = activity;
 		this.data = data;
 	}
