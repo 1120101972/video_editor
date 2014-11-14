@@ -139,7 +139,7 @@ public class MediaPreviewActivity extends BaseActivity implements
 		mLeftMargin = ConvertToUtils.dipToPX(this, 8);
 
 		mVideoPath = mMediaObject.getOutputVideoPath();
-		Toast.makeText(MediaPreviewActivity.this, mVideoPath, 0).show();
+		
 		
 		if (StringUtils.isNotEmpty(mVideoPath)) {
 			mCoverPath = mVideoPath.replace(".mp4", ".jpg");

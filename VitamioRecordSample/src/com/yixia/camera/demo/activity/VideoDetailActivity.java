@@ -80,7 +80,6 @@ public class VideoDetailActivity extends VCameraDemoBaseActivity implements
 		// mPath = getIntent().getStringExtra("path");
 		// mPath = "http://10.1.112.123:6060/vedio/hello.mp4" ;
 		mPath = "/mnt/sdcard/DCIM/Camera/VCameraDemo/1415963312767.mp4";
-		Toast.makeText(VideoDetailActivity.this, mPath, 0).show();
 		if (StringUtils.isEmpty(mPath)) {
 			finish();
 			return;

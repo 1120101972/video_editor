@@ -81,7 +81,7 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 
 		mPath = getIntent().getStringExtra("path");
 		// mPath = "http://10.1.112.123:6060/vedio/hello.mp4" ;
-		Toast.makeText(VideoPlayerActivity.this, mPath, 0).show();
+
 		Log.d(this.getClass().toString(), mPath);
 		if (StringUtils.isEmpty(mPath)) {
 			finish();
@@ -110,7 +110,15 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 
 			}
 		});
+		baseLayout.tv_button.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				handleHeaderTextEvent();
+
+			}
+		});
 		// mVideoView
 		// .setOnVideoSizeChangedListener(new OnVideoSizeChangedListener() {
 		//
@@ -288,12 +296,12 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 		// TODO Auto-generated method stub
 		super.handleHeaderTextEvent();
 
-		toast("OK");
-		if (post == null) {
-			post = new HttpPost("http://10.1.112.123:8080/vedio/upload.action");
-		}
+		// toast("OK");
+		// if (post == null) {
+		// post = new HttpPost("http://10.1.112.123:8080/vedio/upload.action");
+		// }
 		Toast.makeText(VideoPlayerActivity.this, "开始上传", 0).show();
-		new Thread(new postLostFound()).start();
+		// new Thread(new postLostFound()).start();
 
 	}
 
