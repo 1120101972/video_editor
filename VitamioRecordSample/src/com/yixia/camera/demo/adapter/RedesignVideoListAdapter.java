@@ -1,0 +1,92 @@
+package com.yixia.camera.demo.adapter;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yixia.camera.demo.R;
+import com.yixia.camera.demo.bean.CommentData;
+
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class RedesignVideoListAdapter extends BaseAdapter {
+
+	private ArrayList<CommentData> data;
+	private Activity activity;
+
+	public RedesignVideoListAdapter(Activity activity,
+			ArrayList<CommentData> data) {
+		this.activity = activity;
+		this.data = data;
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return data.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return data.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		ViewHolder viewHolder = null;
+		if (convertView == null) {
+			viewHolder = new ViewHolder();
+			convertView = LayoutInflater.from(activity).inflate(
+					R.layout.item_detail_comment, parent, false);
+
+			viewHolder.title = (TextView) convertView
+					.findViewById(R.id.txtUserName);
+			viewHolder.longTime = (TextView) convertView
+					.findViewById(R.id.txtTime);
+			viewHolder.changeTime = (TextView) convertView
+					.findViewById(R.id.txtcommentBody);
+			viewHolder.personView = (ImageView) convertView
+					.findViewById(R.id.imgPeople);
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+
+		CommentData comment = data.get(position);
+		String name = comment.username;
+		if (TextUtils.isEmpty(name)) {
+			name = "匿名";
+		}
+		viewHolder.title.setText(name);
+		viewHolder.longTime.setText(comment.pubtime);
+		viewHolder.changeTime.setText(comment.content);
+
+		ImageLoader.getInstance().displayImage(
+				(String) data.get(position).peopleUrl, viewHolder.personView);
+
+		return convertView;
+	}
+
+	private class ViewHolder {
+		TextView changeTime;
+		TextView longTime;
+		TextView title;
+		ImageView personView;
+	}
+
+}
