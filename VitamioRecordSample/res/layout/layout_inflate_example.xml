@@ -15,23 +15,22 @@
   ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~    See the License for the specific language governing permissions and
   ~    limitations under the License.
-  -->
+-->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:fcf="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:fcf="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <at.technikum.mti.fancycoverflow.FancyCoverFlow
         android:id="@+id/fancyCoverFlow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         fcf:maxRotation="45"
+        fcf:scaleDownGravity="0.5"
         fcf:unselectedAlpha="0.3"
         fcf:unselectedSaturation="0.0"
-        fcf:unselectedScale="0.4"
-        fcf:scaleDownGravity="0.5"
-        />
+        fcf:unselectedScale="0.4" />
 
 </LinearLayout>

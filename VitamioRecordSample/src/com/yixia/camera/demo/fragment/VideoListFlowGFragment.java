@@ -8,6 +8,7 @@ import com.yixia.camera.demo.R;
 import com.yixia.camera.demo.adapter.CoverFlowAdapter;
 import com.yixia.camera.demo.bean.VideoDetailBean;
 import com.yixia.camera.demo.ui.widget.coverflow.CoverFlow;
+import com.yixia.camera.demo.utils.StringUtils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -39,40 +40,38 @@ import at.technikum.mti.fancycoverflow.FancyCoverFlowAdapter;
 public class VideoListFlowGFragment extends Fragment {
 
 	private ArrayList<VideoDetailBean> list = new ArrayList<VideoDetailBean>();
-	
-	CoverFlow cf ;
+
+	CoverFlow cf;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.coverflow, null);
-		// FancyCoverFlow fancyCoverFlow = (FancyCoverFlow) view
-		// .findViewById(R.id.fancyCoverFlow);
-		// fancyCoverFlow.setReflectionEnabled(true);
-		// fancyCoverFlow.setReflectionRatio(0.3f);
-		// fancyCoverFlow.setReflectionGap(0);
-		// for (int i = 0; i < 5; i++) {
-		// VideoDetailBean bean = new VideoDetailBean();
-		// bean.seturl("http://img.tupianzj.com/uploads/allimg/141113/3-141113114414.jpg");
-		// bean.setbrif("OK 真好看");
-		// list.add(bean);
-		// }
-		//
-		// fancyCoverFlow.setAdapter(new ViewGroupExampleAdapter(getActivity(),
-		// list));
-		CoverFlowAdapter adapter = new CoverFlowAdapter(getActivity());
-		// flow.setAdapter(adapter);
-		// flow.setGravity(Gravity.CENTER_HORIZONTAL);
+		View view = inflater.inflate(R.layout.layout_inflate_example, null);
+		FancyCoverFlow fancyCoverFlow = (FancyCoverFlow) view
+				.findViewById(R.id.fancyCoverFlow);
+		fancyCoverFlow.setReflectionEnabled(true);
+		fancyCoverFlow.setReflectionRatio(0.3f);
+		fancyCoverFlow.setReflectionGap(0);
+		for (int i = 0; i < 5; i++) {
+			VideoDetailBean bean = new VideoDetailBean();
+			bean.seturl("http://img.tupianzj.com/uploads/allimg/141113/3-141113114414.jpg");
+			bean.setbrif("OK 真好看");
+			list.add(bean);
+		}
 
-		cf = (CoverFlow) view.findViewById(R.id.cover_flow);
-		// ImageAdapter adapter = new ImageAdapter(this);
-		cf.setAdapter(adapter);
-		cf.setGravity(Gravity.CENTER_HORIZONTAL);
+		fancyCoverFlow.setAdapter(new ViewGroupExampleAdapter(getActivity(),
+				list));
+		// CoverFlowAdapter adapter = new CoverFlowAdapter(getActivity());
+		// // flow.setAdapter(adapter);
+		// // flow.setGravity(Gravity.CENTER_HORIZONTAL);
+		//
+		// cf = (CoverFlow) view.findViewById(R.id.cover_flow);
+		// // ImageAdapter adapter = new ImageAdapter(this);
+		// cf.setAdapter(adapter);
+		// cf.setGravity(Gravity.CENTER_HORIZONTAL);
 		return view;
 	}
-
-
 
 	private static class ViewGroupExampleAdapter extends FancyCoverFlowAdapter {
 
@@ -170,14 +169,18 @@ public class VideoListFlowGFragment extends Fragment {
 					ViewGroup.LayoutParams.MATCH_PARENT,
 					ViewGroup.LayoutParams.MATCH_PARENT);
 
-			this.imageView.setLayoutParams(layoutParams);
+			LayoutParams layoutParams2 = new LayoutParams(StringUtils.dip2px(
+					context, 150), StringUtils.dip2px(context, 250));
+
+			this.imageView.setLayoutParams(layoutParams2);
 			this.textView.setLayoutParams(layoutParams);
 
-			this.imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+			this.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+			this.imageView.setBackgroundColor(getResources().getColor(
+					R.color.white));
 			this.imageView.setAdjustViewBounds(true);
 			this.imageView.setClickable(true);
 
-			this.textView.setText("Goto GitHub");
 			this.imageView.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View view) {

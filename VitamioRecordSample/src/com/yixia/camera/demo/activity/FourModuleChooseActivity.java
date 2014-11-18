@@ -37,6 +37,8 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	private FragmentManager manager;
 	private final String TAG = "FourModuleChooseActivity";
 
+	CoverFlow cf;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,6 +48,15 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 		baseLayout.setHeaderBarStyle("原创频道", R.drawable.page_loading_bar,
 				R.drawable.page_loading_bar);
 		initView();
+//		CoverFlowAdapter adapter = new CoverFlowAdapter(
+//				FourModuleChooseActivity.this);
+//		// flow.setAdapter(adapter);
+//		// flow.setGravity(Gravity.CENTER_HORIZONTAL);
+//
+//		cf = (CoverFlow) findViewById(R.id.cover_flow);
+//		// ImageAdapter adapter = new ImageAdapter(this);
+//		cf.setAdapter(adapter);
+//		cf.setGravity(Gravity.CENTER_HORIZONTAL);
 
 		getFragment();
 
@@ -146,7 +157,7 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	@Override
 	public void initData() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

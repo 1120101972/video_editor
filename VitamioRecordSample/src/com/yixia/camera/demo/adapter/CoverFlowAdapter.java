@@ -1,7 +1,5 @@
 package com.yixia.camera.demo.adapter;
 
-
-
 import com.yixia.camera.demo.R;
 
 import android.content.Context;
@@ -34,12 +32,12 @@ public class CoverFlowAdapter extends BaseAdapter {
 	ImageButton mDelete;
 
 	RelativeLayout.LayoutParams mLayoutWrap_Wrap = new RelativeLayout.LayoutParams(
-			LayoutParams.WRAP_CONTENT,
-			LayoutParams.WRAP_CONTENT);
+			ViewGroup.LayoutParams.WRAP_CONTENT,
+			ViewGroup.LayoutParams.WRAP_CONTENT);
 	RelativeLayout.LayoutParams mLayoutFill_Wrap = new RelativeLayout.LayoutParams(
-			LayoutParams.FILL_PARENT,
-			LayoutParams.WRAP_CONTENT);
-	LayoutParams mLayoutGallery = new Gallery.LayoutParams(80, 50);
+			ViewGroup.LayoutParams.FILL_PARENT,
+			ViewGroup.LayoutParams.WRAP_CONTENT);
+	LayoutParams mLayoutGallery = new Gallery.LayoutParams(80, 60);
 
 	private Context mContext;
 
@@ -134,7 +132,7 @@ public class CoverFlowAdapter extends BaseAdapter {
 		relat.addView(mTextnum, mLayoutWrap_Wrap);
 
 		mButtomdivider = new ImageView(mContext);
-		mButtomdivider.setBackgroundResource(R.drawable.divider_line);
+		mButtomdivider.setBackgroundResource(R.drawable.msg_divider);
 		mButtomdivider.layout(0, 228, 380, 230);
 		relat.addView(mButtomdivider, mLayoutFill_Wrap);
 
