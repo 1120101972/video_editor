@@ -21,8 +21,8 @@
             android:id="@+id/videoview"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:fitsSystemWindows="true"
             android:background="@color/transparent"
+            android:fitsSystemWindows="true"
             android:saveEnabled="true" />
 
         <ImageView
@@ -47,7 +47,9 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/page_loading_bar" />
+                android:clickable="true"
+                android:scaleType="center"
+                android:src="@drawable/like" />
 
             <TextView
                 android:id="@+id/tv_like"
@@ -64,7 +66,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/tv_like"
-                android:background="@drawable/page_loading_bar" />
+                android:clickable="true"
+                android:scaleType="center"
+                android:src="@drawable/store" />
 
             <TextView
                 android:id="@+id/tv_store"
@@ -81,7 +85,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@+id/tv_share"
-                android:background="@drawable/page_loading_bar" />
+                android:clickable="true"
+                android:scaleType="center"
+                android:src="@drawable/share" />
 
             <TextView
                 android:id="@+id/tv_share"

@@ -17,8 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-160dp"
-        android:src="@drawable/bg_turntable"
+        android:src="@drawable/earth"
         android:visibility="visible" />
 
     <ImageView
@@ -28,6 +27,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:clickable="true"
-        android:src="@drawable/camera" />
+        android:src="@drawable/camera_bigger" />
 
 </RelativeLayout>

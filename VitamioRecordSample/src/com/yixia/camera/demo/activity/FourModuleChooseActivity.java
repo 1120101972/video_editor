@@ -80,17 +80,17 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	}
 
 	public void setMargin(int height) {
-		// RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
-		// RelativeLayout.LayoutParams.WRAP_CONTENT,
-		// RelativeLayout.LayoutParams.WRAP_CONTENT);
-		// mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		// mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		// mp.setMargins(0, 0, 0, -(height / 2));
-		// iv_change_module.setLayoutParams(mp);
-		// Toast.makeText(
-		// FourModuleChooseActivity.this,
-		// StringUtils.px2dip(FourModuleChooseActivity.this, height / 2)
-		// + "", 0).show();
+		RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.WRAP_CONTENT,
+				RelativeLayout.LayoutParams.WRAP_CONTENT);
+		mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		mp.setMargins(0, 0, 0, -(height / 2));
+		iv_change_module.setLayoutParams(mp);
+		Toast.makeText(
+				FourModuleChooseActivity.this,
+				StringUtils.px2dip(FourModuleChooseActivity.this, height / 2)
+						+ "", 0).show();
 
 	}
 

@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:background="@color/black" >
+        android:background="@drawable/top" >
 
         <ImageView
             android:id="@+id/btn_back"
@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:clickable="true"
-            android:src="@drawable/title_text_left" />
+            android:src="@drawable/back" />
 
         <TextView
             android:id="@+id/tv_header"
