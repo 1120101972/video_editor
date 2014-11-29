@@ -4,7 +4,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -43,9 +43,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.VideoDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraTheme" >
+        </activity>
+        <activity
+            android:name=".activity.VideoRedesignChooseActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraTheme" >
+        </activity>
+        <activity
+            android:name=".activity.VideoEditorActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/CameraTheme" >
@@ -81,6 +92,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/CameraTheme" >
         </activity>
+        <!-- Don't forgot InitActivity -->
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <service android:name=".service.AssertService" />
     </application>

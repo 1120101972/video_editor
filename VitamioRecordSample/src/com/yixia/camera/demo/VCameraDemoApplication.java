@@ -123,6 +123,7 @@ public class VCameraDemoApplication extends Application {
 
 		public void display(CharSequence text, int duration) {
 			if (text.length() != 0) {
+				init(application);
 				tv.setText(text);
 				toast.setDuration(duration);
 				toast.setGravity(Gravity.CENTER, 0, 0);

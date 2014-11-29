@@ -31,7 +31,8 @@ import android.widget.Toast;
  * @since 2013-02-22
  * @version 1.00
  */
-public class TouchRoateImageView extends ImageView implements GestureDetector.OnGestureListener{
+public class TouchRoateImageView extends ImageView implements
+		GestureDetector.OnGestureListener {
 
 	private final static float MIN_DEGREE = 0f;
 	private final static float MAX_DEGREE = 360f;
@@ -100,7 +101,7 @@ public class TouchRoateImageView extends ImageView implements GestureDetector.On
 			handleFinishTouch();
 			break;
 		}
-		
+
 		Log.d("TouchRoateImageView", "onTouchEvent" + event.getAction());
 	}
 
@@ -135,6 +136,22 @@ public class TouchRoateImageView extends ImageView implements GestureDetector.On
 						curDegree = 0f;
 					}
 				} else if (flag == 1) {
+					if (tempDegree < 90f && (90f - tempDegree) > 5f) {
+						tempDegree += 5f;
+					} else {
+						if_animate = false;
+						tempDegree = 90f;
+						curDegree = 90f;
+					}
+				} else if (flag == 2) {
+					if (tempDegree < 135f && (tempDegree - 90f) > 5f) {
+						tempDegree -= 5f;
+					} else {
+						if_animate = false;
+						tempDegree = 90f;
+						curDegree = 90f;
+					}
+				} else if (flag == 3) {
 					if (tempDegree < 180f && (180f - tempDegree) > 5f) {
 						tempDegree += 5f;
 					} else {
@@ -142,21 +159,37 @@ public class TouchRoateImageView extends ImageView implements GestureDetector.On
 						tempDegree = 180f;
 						curDegree = 180f;
 					}
-				} else if (flag == 2) {
+				} else if (flag == 4) {
+					if (tempDegree < 225f && (tempDegree - 180f) > 5f) {
+						tempDegree -= 5f;
+					} else {
+						if_animate = false;
+						tempDegree = 180f;
+						curDegree = 180f;
+					}
+				} else if (flag == 5) {
+					if (tempDegree < 270f && (270f - tempDegree) > 5f) {
+						tempDegree += 5f;
+					} else {
+						if_animate = false;
+						tempDegree = 270f;
+						curDegree = 270f;
+					}
+				} else if (flag == 6) {
+					if (tempDegree < 315f && (tempDegree - 270f) > 5f) {
+						tempDegree -= 5f;
+					} else {
+						if_animate = false;
+						tempDegree = 270f;
+						curDegree = 270f;
+					}
+				} else if (flag == 7) {
 					if (tempDegree < 360f && (360f - tempDegree) > 5f) {
 						tempDegree += 5f;
 					} else {
 						if_animate = false;
 						tempDegree = 0f;
 						curDegree = 0f;
-					}
-				} else {
-					if (tempDegree > 180f && (tempDegree - 180f) > 5f) {
-						tempDegree -= 5f;
-					} else {
-						if_animate = false;
-						tempDegree = 180f;
-						curDegree = 180f;
 					}
 				}
 				if (if_animate == true)
@@ -197,14 +230,30 @@ public class TouchRoateImageView extends ImageView implements GestureDetector.On
 		changeDegree = (float) getActionDegrees(centerX, centerY, saveX, saveY,
 				curTouchX, curTouchY);
 		tempDegree = (float) curDegree + changeDegree;
-		if (tempDegree > 0f && tempDegree < 90f) {
+		if (tempDegree > 0f && tempDegree < 45f) {
 			flag = 0;
-		} else if (tempDegree >= 90f && tempDegree <= 180f) {
+			((FourModuleChooseActivity) currentContext).getFragment(0);
+		} else if (tempDegree >= 45f && tempDegree < 90f) {
 			flag = 1;
-		} else if (tempDegree >= 270f && tempDegree <= 360f) {
+			((FourModuleChooseActivity) currentContext).getFragment(1);
+		} else if (tempDegree >= 90f && tempDegree < 135f) {
+			((FourModuleChooseActivity) currentContext).getFragment(1);
 			flag = 2;
-		} else {
+		} else if (tempDegree >= 135f && tempDegree < 180f) {
+			((FourModuleChooseActivity) currentContext).getFragment(2);
 			flag = 3;
+		} else if (tempDegree >= 180f && tempDegree < 225f) {
+			((FourModuleChooseActivity) currentContext).getFragment(2);
+			flag = 4;
+		} else if (tempDegree >= 225f && tempDegree < 270f) {
+			((FourModuleChooseActivity) currentContext).getFragment(3);
+			flag = 5;
+		} else if (tempDegree >= 270f && tempDegree < 315f) {
+			((FourModuleChooseActivity) currentContext).getFragment(3);
+			flag = 6;
+		} else {
+			((FourModuleChooseActivity) currentContext).getFragment(0);
+			flag = 7;
 		}
 		new Thread(new FLingRunnable()).start();
 		saveTouchPoint();
@@ -338,7 +387,7 @@ public class TouchRoateImageView extends ImageView implements GestureDetector.On
 	@Override
 	public void onLongPress(MotionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -351,7 +400,7 @@ public class TouchRoateImageView extends ImageView implements GestureDetector.On
 	@Override
 	public void onShowPress(MotionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

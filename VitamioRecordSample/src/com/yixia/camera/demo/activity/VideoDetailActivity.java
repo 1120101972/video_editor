@@ -1,30 +1,17 @@
 package com.yixia.camera.demo.activity;
 
-import java.io.File;
+import io.vov.vitamio.widget.MediaController;
+import io.vov.vitamio.widget.VideoView;
+import io.vov.vitamio.LibsChecker;
+import io.vov.vitamio.MediaPlayer;
+
 import java.util.ArrayList;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.util.EntityUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
-import android.media.MediaPlayer.OnErrorListener;
-import android.media.MediaPlayer.OnInfoListener;
-import android.media.MediaPlayer.OnPreparedListener;
-import android.media.MediaPlayer.OnVideoSizeChangedListener;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -32,8 +19,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yixia.camera.demo.R;
@@ -43,6 +31,9 @@ import com.yixia.camera.demo.bean.CommentData;
 import com.yixia.camera.demo.ui.BaseActivity;
 import com.yixia.camera.demo.ui.widget.MyListView;
 import com.yixia.camera.demo.ui.widget.SurfaceVideoView;
+import com.yixia.camera.demo.utils.Constants;
+import com.yixia.camera.demo.utils.SPHelper;
+import com.yixia.camera.demo.utils.Utils;
 import com.yixia.camera.util.DeviceUtils;
 import com.yixia.camera.util.StringUtils;
 
@@ -53,16 +44,19 @@ import com.yixia.camera.util.StringUtils;
  * 
  */
 public class VideoDetailActivity extends VCameraDemoBaseActivity implements
-		SurfaceVideoView.OnPlayStateListener, OnErrorListener,
-		OnPreparedListener, OnClickListener, OnCompletionListener,
-		OnInfoListener {
+		OnClickListener {
 
 	/** 播放控件 */
-	private SurfaceVideoView mVideoView;
+	private VideoView mVideoView;
 	/** 暂停按钮 */
 	private View mPlayerStatus;
 	private View mLoading;
 	private MyListView lv_comment;
+
+	private ImageView iv_like, iv_store, iv_share;
+	private TextView tv_like, tv_store, tv_share;
+
+	private RelativeLayout rl_main;
 
 	/** 播放路径 */
 	private String mPath;
@@ -71,15 +65,23 @@ public class VideoDetailActivity extends VCameraDemoBaseActivity implements
 	/** 评论数据 */
 	private ArrayList<CommentData> datas = new ArrayList<CommentData>();
 
+	private int[] back_image = { R.drawable.spring_back,
+			R.drawable.summer_back, R.drawable.autunm_back,
+			R.drawable.winter_back };
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (!LibsChecker.checkVitamioLibs(this))
+			return;
 		// 防止锁屏
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		// mPath = getIntent().getStringExtra("path");
 		// mPath = "http://10.1.112.123:6060/vedio/hello.mp4" ;
-		mPath = "/mnt/sdcard/DCIM/Camera/VCameraDemo/1415963312767.mp4";
+		// mPath = "/mnt/sdcard/DCIM/Camera/VCameraDemo/1417253773244.mp4";
+		mPath = SPHelper.getInstance(VideoDetailActivity.this).getString(
+				Constants.CURRENT_VIDEOPATH, "");
 		if (StringUtils.isEmpty(mPath)) {
 			finish();
 			return;
@@ -114,16 +116,33 @@ public class VideoDetailActivity extends VCameraDemoBaseActivity implements
 	@Override
 	public void initView() {
 		// TODO Auto-generated method stub
-		mVideoView = (SurfaceVideoView) findViewById(R.id.videoview);
+		mVideoView = (VideoView) findViewById(R.id.videoview);
 		mPlayerStatus = findViewById(R.id.play_status);
 		mLoading = findViewById(R.id.loading);
 
-		mVideoView.setOnPreparedListener(this);
-		mVideoView.setOnPlayStateListener(this);
-		mVideoView.setOnErrorListener(this);
+		iv_like = (ImageView) findViewById(R.id.iv_like);
+		iv_share = (ImageView) findViewById(R.id.iv_share);
+		iv_store = (ImageView) findViewById(R.id.iv_store);
+		tv_like = (TextView) findViewById(R.id.tv_like);
+		tv_share = (TextView) findViewById(R.id.tv_share);
+		tv_store = (TextView) findViewById(R.id.tv_store);
+
+		iv_like.setOnClickListener(this);
+		iv_share.setOnClickListener(this);
+		iv_store.setOnClickListener(this);
+		tv_like.setOnClickListener(this);
+		tv_share.setOnClickListener(this);
+		tv_store.setOnClickListener(this);
+
+		rl_main = (RelativeLayout) findViewById(R.id.rl_main);
+		rl_main.setBackgroundResource(back_image[Constants.current]);
+//
+//		mVideoView.setOnPreparedListener(this);
+//		mVideoView.setOnPlayStateListener(this);
+//		mVideoView.setOnErrorListener(this);
 		mVideoView.setOnClickListener(this);
-		mVideoView.setOnInfoListener(this);
-		mVideoView.setOnCompletionListener(this);
+		// mVideoView.setOnInfoListener(this);
+		// mVideoView.setOnCompletionListener(this);
 
 		baseLayout.btn_back.setOnClickListener(new OnClickListener() {
 
@@ -136,6 +155,16 @@ public class VideoDetailActivity extends VCameraDemoBaseActivity implements
 
 		// findViewById(R.id.root).setOnClickListener(this);
 		mVideoView.setVideoPath(mPath);
+		mVideoView.setMediaController(new MediaController(this));
+		mVideoView.requestFocus();
+		mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+			@Override
+			public void onPrepared(MediaPlayer mediaPlayer) {
+				// optional need Vitamio 4.0
+				//mediaPlayer.setPlaybackSpeed(1.0f);
+			}
+		});
+
 
 		lv_comment = (MyListView) findViewById(R.id.lv_comment);
 
@@ -216,13 +245,13 @@ public class VideoDetailActivity extends VCameraDemoBaseActivity implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (mVideoView != null && mNeedResume) {
-			mNeedResume = false;
-			if (mVideoView.isRelease())
-				mVideoView.reOpen();
-			else
-				mVideoView.start();
-		}
+//		if (mVideoView != null && mNeedResume) {
+//			mNeedResume = false;
+//			if (mVideoView.isRelease())
+//				mVideoView.reOpen();
+//			else
+//				mVideoView.start();
+//		}
 	}
 
 	@Override
@@ -239,61 +268,71 @@ public class VideoDetailActivity extends VCameraDemoBaseActivity implements
 	@Override
 	public void onDestroy() {
 		if (mVideoView != null) {
-			mVideoView.release();
+			//mVideoView.release();
 			mVideoView = null;
 		}
 		super.onDestroy();
 	}
 
-	@Override
-	public void onPrepared(MediaPlayer mp) {
-		mVideoView.setVolume(SurfaceVideoView.getSystemVolumn(this));
-		mVideoView.start();
-		// new Handler().postDelayed(new Runnable() {
-		//
-		// @SuppressWarnings("deprecation")
-		// @Override
-		// public void run() {
-		// if (DeviceUtils.hasJellyBean()) {
-		// mVideoView.setBackground(null);
-		// } else {
-		// mVideoView.setBackgroundDrawable(null);
-		// }
-		// }
-		// }, 300);
-		mLoading.setVisibility(View.GONE);
-	}
+//	@Override
+//	public void onPrepared(MediaPlayer mp) {
+//		mVideoView.setVolume(SurfaceVideoView.getSystemVolumn(this));
+//		mVideoView.start();
+//		// new Handler().postDelayed(new Runnable() {
+//		//
+//		// @SuppressWarnings("deprecation")
+//		// @Override
+//		// public void run() {
+//		// if (DeviceUtils.hasJellyBean()) {
+//		// mVideoView.setBackground(null);
+//		// } else {
+//		// mVideoView.setBackgroundDrawable(null);
+//		// }
+//		// }
+//		// }, 300);
+//		mLoading.setVisibility(View.GONE);
+//	}
 
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		switch (event.getKeyCode()) {// 跟随系统音量走
 		case KeyEvent.KEYCODE_VOLUME_DOWN:
 		case KeyEvent.KEYCODE_VOLUME_UP:
-			mVideoView.dispatchKeyEvent(this, event);
+			//mVideoView.dispatchKeyEvent(this, event);
 			break;
 		}
 		return super.dispatchKeyEvent(event);
 	}
 
-	@Override
-	public void onStateChanged(boolean isPlaying) {
-		mPlayerStatus.setVisibility(isPlaying ? View.GONE : View.VISIBLE);
-	}
-
-	@Override
-	public boolean onError(MediaPlayer mp, int what, int extra) {
-		if (!isFinishing()) {
-			// 播放失败
-		}
-		finish();
-		return false;
-	}
+//	@Override
+//	public void onStateChanged(boolean isPlaying) {
+//		mPlayerStatus.setVisibility(isPlaying ? View.GONE : View.VISIBLE);
+//	}
+//
+//	@Override
+//	public boolean onError(MediaPlayer mp, int what, int extra) {
+//		if (!isFinishing()) {
+//			// 播放失败
+//		}
+//		finish();
+//		return false;
+//	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.root:
 			finish();
+			break;
+		case R.id.iv_like:
+		case R.id.tv_like:
+			Utils.toast(VideoDetailActivity.this, "喜欢");
+			break;
+		case R.id.iv_share:
+		case R.id.tv_share:
+			break;
+		case R.id.iv_store:
+		case R.id.tv_store:
 			break;
 		// case R.id.btn_upload:
 		// if (post == null) {
@@ -312,37 +351,37 @@ public class VideoDetailActivity extends VCameraDemoBaseActivity implements
 		}
 	}
 
-	@Override
-	public void onCompletion(MediaPlayer mp) {
-		if (!isFinishing())
-			mVideoView.reOpen();
-	}
-
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	@Override
-	public boolean onInfo(MediaPlayer mp, int what, int extra) {
-		switch (what) {
-		case MediaPlayer.MEDIA_INFO_BAD_INTERLEAVING:
-			// 音频和视频数据不正确
-			break;
-		case MediaPlayer.MEDIA_INFO_BUFFERING_START:
-			if (!isFinishing())
-				mVideoView.pause();
-			break;
-		case MediaPlayer.MEDIA_INFO_BUFFERING_END:
-			if (!isFinishing())
-				mVideoView.start();
-			break;
-		case MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START:
-			if (DeviceUtils.hasJellyBean()) {
-				mVideoView.setBackground(null);
-			} else {
-				mVideoView.setBackgroundDrawable(null);
-			}
-			break;
-		}
-		return false;
-	}
+//	@Override
+//	public void onCompletion(MediaPlayer mp) {
+//		if (!isFinishing())
+//			mVideoView.reOpen();
+//	}
+//
+//	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+//	@Override
+//	public boolean onInfo(MediaPlayer mp, int what, int extra) {
+//		switch (what) {
+//		case MediaPlayer.MEDIA_INFO_BAD_INTERLEAVING:
+//			// 音频和视频数据不正确
+//			break;
+//		case MediaPlayer.MEDIA_INFO_BUFFERING_START:
+//			if (!isFinishing())
+//				mVideoView.pause();
+//			break;
+//		case MediaPlayer.MEDIA_INFO_BUFFERING_END:
+//			if (!isFinishing())
+//				mVideoView.start();
+//			break;
+//		case MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START:
+//			if (DeviceUtils.hasJellyBean()) {
+//				mVideoView.setBackground(null);
+//			} else {
+//				mVideoView.setBackgroundDrawable(null);
+//			}
+//			break;
+//		}
+//		return false;
+//	}
 
 	@Override
 	public void initData() {

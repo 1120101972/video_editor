@@ -21,6 +21,8 @@ import com.yixia.camera.demo.fragment.VideoListFlowGFragment;
 import com.yixia.camera.demo.ui.record.MediaRecorderActivity;
 import com.yixia.camera.demo.ui.widget.TouchRoateImageView;
 import com.yixia.camera.demo.ui.widget.coverflow.CoverFlow;
+import com.yixia.camera.demo.utils.Constants;
+import com.yixia.camera.demo.utils.Constants.Module;
 import com.yixia.camera.demo.utils.StringUtils;
 
 /**
@@ -38,6 +40,8 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	private final String TAG = "FourModuleChooseActivity";
 
 	CoverFlow cf;
+	
+	private String[] title = {"原创频道","改编频道","传媒频道","视听空间"};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +49,21 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setView(R.layout.activity_four_module_page, LAYOUT_TYPE_HEADER);
-		baseLayout.setHeaderBarStyle("原创频道", R.drawable.page_loading_bar,
-				R.drawable.page_loading_bar);
+		baseLayout.setHeaderBarStyle("原创频道", R.drawable.search, 0,
+				R.drawable.menu);
 		initView();
-//		CoverFlowAdapter adapter = new CoverFlowAdapter(
-//				FourModuleChooseActivity.this);
-//		// flow.setAdapter(adapter);
-//		// flow.setGravity(Gravity.CENTER_HORIZONTAL);
-//
-//		cf = (CoverFlow) findViewById(R.id.cover_flow);
-//		// ImageAdapter adapter = new ImageAdapter(this);
-//		cf.setAdapter(adapter);
-//		cf.setGravity(Gravity.CENTER_HORIZONTAL);
+		Constants.current = 0;
+		// CoverFlowAdapter adapter = new CoverFlowAdapter(
+		// FourModuleChooseActivity.this);
+		// // flow.setAdapter(adapter);
+		// // flow.setGravity(Gravity.CENTER_HORIZONTAL);
+		//
+		// cf = (CoverFlow) findViewById(R.id.cover_flow);
+		// // ImageAdapter adapter = new ImageAdapter(this);
+		// cf.setAdapter(adapter);
+		// cf.setGravity(Gravity.CENTER_HORIZONTAL);
 
-		getFragment();
+		getFragment(0);
 
 		// CoverFlowAdapter adapter = new CoverFlowAdapter(this);
 		// flow.setAdapter(adapter);
@@ -80,17 +85,18 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	}
 
 	public void setMargin(int height) {
-		RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.WRAP_CONTENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		mp.setMargins(0, 0, 0, -(height / 2));
-		iv_change_module.setLayoutParams(mp);
-		Toast.makeText(
-				FourModuleChooseActivity.this,
-				StringUtils.px2dip(FourModuleChooseActivity.this, height / 2)
-						+ "", 0).show();
+//		RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
+//				RelativeLayout.LayoutParams.WRAP_CONTENT,
+//				RelativeLayout.LayoutParams.WRAP_CONTENT);
+//		mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//		mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//		mp.setMargins(0, 0, 0, -(height / 2));
+//		iv_change_module.setLayoutParams(mp);
+//		iv_change_module.setVisibility(View.VISIBLE);
+		// Toast.makeText(
+		// FourModuleChooseActivity.this,
+		// StringUtils.px2dip(FourModuleChooseActivity.this, height / 2)
+		// + "", 0).show();
 
 	}
 
@@ -120,10 +126,17 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 
 	}
 
-	private void getFragment() {
+	public void getFragment(int type) {
+		baseLayout.setHeaderBarStyle(title[type], R.drawable.search, 0,
+				R.drawable.menu);
+		Constants.current = type;
 		manager = getSupportFragmentManager();
 		FragmentTransaction ft = manager.beginTransaction();
+		ft.setCustomAnimations(R.anim.anim_alpha_show,R.anim.anim_alpha_fade); 
+		Bundle bundle1 = new Bundle();
+		bundle1.putInt("module", type);
 		VideoListFlowGFragment fragment = new VideoListFlowGFragment();
+		fragment.setArguments(bundle1);
 		ft.replace(R.id.frag_cover_flow, fragment).commit();
 
 	}
@@ -135,9 +148,14 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 		int Id = v.getId();
 		switch (Id) {
 		case R.id.iv_camera:
-
-			startActivityForAnima(new Intent().setClass(mContext,
-					MediaRecorderActivity.class));
+			if(Constants.current==1)
+				startActivityForAnima(new Intent().setClass(mContext,
+						VideoRedesignChooseActivity.class));
+			else {
+				startActivityForAnima(new Intent().setClass(mContext,
+						MediaRecorderActivity.class));
+			}
+			
 			break;
 
 		default:

@@ -119,6 +119,9 @@ public class BaseLayout extends RelativeLayout {
 	}
 
 	public void setHeaderBarStyle(String title, int topRight1, int topRight2) {
+		setHeaderBarStyle(title, 0, topRight1, topRight2);
+	}
+	public void setHeaderBarStyle(String title,int left, int topRight1, int topRight2) {
 		if (!TextUtils.isEmpty(title) || topRight1 != 0 || topRight2 != 0) {
 			ll_header_right.setVisibility(View.VISIBLE);
 			if (!TextUtils.isEmpty(title)) {
@@ -128,12 +131,16 @@ public class BaseLayout extends RelativeLayout {
 				tv_header.setVisibility(View.GONE);
 			}
 			if (topRight1 != 0) {
-				img_right1.setBackgroundResource(topRight1);
+				img_right1.setImageResource(topRight1);
 				img_right1.setVisibility(View.VISIBLE);
 			}
 			if (topRight2 != 0) {
-				img_right2.setBackgroundResource(topRight2);
+				img_right2.setImageResource(topRight2);
 				img_right2.setVisibility(View.VISIBLE);
+			}
+			if(left!=0)
+			{
+				btn_back.setImageResource(left);
 			}
 		}
 	}

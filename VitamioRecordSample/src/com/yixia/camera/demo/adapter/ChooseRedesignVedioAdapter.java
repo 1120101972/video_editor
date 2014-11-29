@@ -71,8 +71,8 @@ public class ChooseRedesignVedioAdapter extends BaseAdapter {
 		VideoRedesignBean design = data.get(position);
 
 		viewHolder.title.setText(design.getTitle());
-		viewHolder.timeView.setText(design.getLong_time());
-		viewHolder.chooseTime.setText(design.getchangeTime());
+		viewHolder.timeView.setText("时长："+design.getLong_time());
+		viewHolder.chooseTime.setText("改编："+design.getchangeTime()+"次");
 
 		ImageLoader.getInstance().displayImage(
 				(String) data.get(position).getimage_url(),

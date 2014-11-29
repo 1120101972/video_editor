@@ -18,6 +18,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/earth"
+        android:layout_marginBottom="-151dp"
         android:visibility="visible" />
 
     <ImageView

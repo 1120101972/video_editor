@@ -41,6 +41,8 @@ import com.yixia.camera.demo.R;
 import com.yixia.camera.demo.VCameraDemoBaseActivity;
 import com.yixia.camera.demo.ui.BaseActivity;
 import com.yixia.camera.demo.ui.widget.SurfaceVideoView;
+import com.yixia.camera.demo.utils.Constants;
+import com.yixia.camera.demo.utils.SPHelper;
 import com.yixia.camera.util.DeviceUtils;
 import com.yixia.camera.util.StringUtils;
 
@@ -80,7 +82,9 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		mPath = getIntent().getStringExtra("path");
+		SPHelper.getInstance(VideoPlayerActivity.this).setString(Constants.CURRENT_VIDEOPATH, mPath);
 		// mPath = "http://10.1.112.123:6060/vedio/hello.mp4" ;
+		
 
 		Log.d(this.getClass().toString(), mPath);
 		if (StringUtils.isEmpty(mPath)) {
