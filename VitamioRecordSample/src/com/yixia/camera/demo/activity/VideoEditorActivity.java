@@ -218,7 +218,7 @@ public class VideoEditorActivity extends VCameraDemoBaseActivity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.root:
-			finish();
+			
 			break;
 
 		case R.id.videoview:

@@ -8,13 +8,13 @@ package com.yixia.camera;
 
 public final class R {
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f02001b;
+		public static final int ic_launcher = 0x7f020021;
 	}
 	public static final class string {
-		public static final int app_name = 0x7f060007;
+		public static final int app_name = 0x7f080013;
 	}
 	public static final class style {
-		public static final int AppBaseTheme = 0x7f070002;
-		public static final int AppTheme = 0x7f070003;
+		public static final int AppBaseTheme = 0x7f0a0002;
+		public static final int AppTheme = 0x7f0a0003;
 	}
 }

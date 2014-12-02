@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="45dp"
+        android:layout_height="49dp"
         android:background="@drawable/top" >
 
         <ImageView
@@ -31,7 +31,7 @@
             android:singleLine="true"
             android:text="你好"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <LinearLayout
             android:id="@+id/ll_header_right"

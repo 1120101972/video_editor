@@ -88,6 +88,9 @@
     <color name="group_bg">#ffe9e7e7</color>
     <color name="tg_list_image">#353535</color>
     <color name="detail_gray">#5f5f5f</color>
+    <color name="detail_like">#222222</color>
+    <color name="detail_new_comment">#7f746e</color>
+     <color name="detail_comment_info">#bfbbb8</color>
     <color name="window_deep_bg">#eaeeef</color>
     <color name="contents_text">#ff000000</color>
     <color name="encode_view">#ffffffff</color>

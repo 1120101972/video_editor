@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/total"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#31C5AB" >
+
+        <ImageView
+            android:id="@+id/imgOK"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/nvg_send_style" />
+
+        <ImageView
+            android:id="@+id/imgNo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/nvg_cancel_style" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/etxtName"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/title_bar"
+        android:background="#ffffff"
+        android:ems="10"
+        android:hint="用户名"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@color/luntan_black"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etxtName"
+        android:src="#D4D4D4" />
+
+    <EditText
+        android:id="@+id/etxtCommentDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:background="#ffffff"
+        android:gravity="top"
+        android:minLines="5"
+        android:padding="8dp"
+        android:textColor="@color/luntan_black"
+        android:textSize="14sp" />
+
+</RelativeLayout>

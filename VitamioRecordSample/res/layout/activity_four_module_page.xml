@@ -11,14 +11,29 @@
         android:visibility="visible" >
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="9dp"
+        android:background="@drawable/more"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="更多"
+        android:textColor="@color/detail_like"
+        android:textSize="18sp" />
+
     <com.yixia.camera.demo.ui.widget.TouchRoateImageView
         android:id="@+id/infoOperating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/earth"
-        android:layout_marginBottom="-151dp"
+        android:layout_marginBottom="-124dp"
+        android:src="@drawable/earth1"
         android:visibility="visible" />
 
     <ImageView
@@ -26,7 +41,7 @@
         style="@style/wrap"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:clickable="true"
         android:src="@drawable/camera_bigger" />
 

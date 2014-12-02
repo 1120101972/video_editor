@@ -70,7 +70,7 @@
         <item name="android:shadowRadius">1.0</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="RecordThemeStyle">
@@ -244,15 +244,15 @@
     </style>
 
     <style name="detail_gray20">
-        <item name="android:textColor">@color/detail_gray</item>
-        <item name="android:textSize">20.0sp</item>
+        <item name="android:textColor">@color/detail_like</item>
+        <item name="android:textSize">16.0sp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
 
     <style name="detail_gray22">
-        <item name="android:textColor">@color/detail_gray</item>
-        <item name="android:textSize">22.0sp</item>
+        <item name="android:textColor">@color/detail_new_comment</item>
+        <item name="android:textSize">18.0sp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>

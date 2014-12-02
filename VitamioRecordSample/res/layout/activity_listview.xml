@@ -5,7 +5,7 @@
     android:background="@drawable/summer_back"
     android:orientation="vertical" >
 
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/lv_list"
         style="@style/listnormal" />
 

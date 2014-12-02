@@ -56,6 +56,12 @@
             android:theme="@style/CameraTheme" >
         </activity>
         <activity
+            android:name=".activity.VideoMoreActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraTheme" >
+        </activity>
+        <activity
             android:name=".activity.VideoEditorActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

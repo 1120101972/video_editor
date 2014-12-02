@@ -1,73 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/summer_back" >
 
-    <com.yixia.camera.demo.ui.widget.SurfaceVideoView
-        android:id="@+id/videoview"
+    <RelativeLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/transparent"
-        android:fitsSystemWindows="true"
-        android:saveEnabled="true" />
+        android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/play_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:contentDescription="@string/imageview_content_description"
-        android:src="@drawable/play_big"
-        android:visibility="gone" />
+        <com.yixia.camera.demo.ui.widget.SurfaceVideoView
+            android:id="@+id/videoview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/transparent"
+            android:fitsSystemWindows="true"
+            android:saveEnabled="true" />
 
-    <ProgressBar
-        android:id="@+id/loading"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp" />
+        <ImageView
+            android:id="@+id/play_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:contentDescription="@string/imageview_content_description"
+            android:src="@drawable/play_big"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/et_video"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/videoview"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button"
-        android:gravity="center"
-        android:text="录制视频"
-        android:textColor="@color/detail_gray"
-        android:textSize="20sp" />
+        <ProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp" />
 
-    <TextView
-        android:id="@+id/et_audeo"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/et_video"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/button"
-        android:gravity="center"
-        android:text="录制音乐"
-        android:textColor="@color/detail_gray"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/et_video"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/videoview"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:text="录制视频"
+            android:textColor="@color/detail_gray"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/et_subtitle"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/et_audeo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/button"
-        android:gravity="center"
-        android:text="改歌词"
-        android:textColor="@color/detail_gray"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/et_audeo"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/et_video"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:text="录制音乐"
+            android:textColor="@color/detail_gray"
+            android:textSize="20sp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/et_subtitle"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/et_audeo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:text="改歌词"
+            android:textColor="@color/detail_gray"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</ScrollView>

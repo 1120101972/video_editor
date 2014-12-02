@@ -230,7 +230,7 @@ public class TouchRoateImageView extends ImageView implements
 		changeDegree = (float) getActionDegrees(centerX, centerY, saveX, saveY,
 				curTouchX, curTouchY);
 		tempDegree = (float) curDegree + changeDegree;
-		if (tempDegree > 0f && tempDegree < 45f) {
+		if (tempDegree >= 0f && tempDegree < 45f) {
 			flag = 0;
 			((FourModuleChooseActivity) currentContext).getFragment(0);
 		} else if (tempDegree >= 45f && tempDegree < 90f) {
