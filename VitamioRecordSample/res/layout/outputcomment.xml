@@ -10,7 +10,7 @@
         android:id="@+id/title_bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#31C5AB" >
+        android:background="@drawable/top" >
 
         <ImageView
             android:id="@+id/imgOK"

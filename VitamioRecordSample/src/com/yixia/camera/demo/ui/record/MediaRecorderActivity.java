@@ -31,6 +31,7 @@ import com.yixia.camera.MediaRecorderNative;
 import com.yixia.camera.MediaRecorderSystem;
 import com.yixia.camera.VCamera;
 import com.yixia.camera.demo.R;
+import com.yixia.camera.demo.VCameraDemoApplication;
 import com.yixia.camera.demo.common.CommonIntentExtra;
 import com.yixia.camera.demo.log.Logger;
 import com.yixia.camera.demo.ui.BaseActivity;
@@ -48,9 +49,11 @@ import java.util.ArrayList;
  * 视频录制
  * 
  * @author tangjun@yixia.com
- *
+ * 
  */
-public class MediaRecorderActivity extends BaseActivity implements OnErrorListener, OnClickListener, OnPreparedListener, MediaRecorderBase.OnEncodeListener {
+public class MediaRecorderActivity extends BaseActivity implements
+		OnErrorListener, OnClickListener, OnPreparedListener,
+		MediaRecorderBase.OnEncodeListener {
 
 	/** 录制最长时间 */
 	public final static int RECORD_TIME_MAX = 50 * 1000;
@@ -105,6 +108,8 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 	/** 屏幕宽度 */
 	private int mWindowWidth;
 
+	protected VCameraDemoApplication mApp;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		mCreated = false;
@@ -113,6 +118,9 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 		loadIntent();
 		loadViews();
 		mCreated = true;
+		mApp = (VCameraDemoApplication) VCameraDemoApplication.getContext();
+		mApp.push(this);
+
 	}
 
 	/** 加载传入的参数 */
@@ -120,8 +128,9 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 		mWindowWidth = DeviceUtils.getScreenWidth(this);
 
 		mFocusWidth = ConvertToUtils.dipToPX(this, 64);
-		mBackgroundColorNormal = getResources().getColor(R.color.black);//camera_bottom_bg
-		mBackgroundColorPress = getResources().getColor(R.color.camera_bottom_press_bg);
+		mBackgroundColorNormal = getResources().getColor(R.color.black);// camera_bottom_bg
+		mBackgroundColorPress = getResources().getColor(
+				R.color.camera_bottom_press_bg);
 	}
 
 	/** 加载视图 */
@@ -149,13 +158,13 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 
 		// ~~~ 设置数据
 
-		//是否支持前置摄像头
+		// 是否支持前置摄像头
 		if (MediaRecorderBase.isSupportFrontCamera()) {
 			mCameraSwitch.setOnClickListener(this);
 		} else {
 			mCameraSwitch.setVisibility(View.GONE);
 		}
-		//是否支持闪光灯
+		// 是否支持闪光灯
 		if (DeviceUtils.isSupportCameraLedFlash(getPackageManager())) {
 			mRecordLed.setOnClickListener(this);
 		} else {
@@ -179,7 +188,8 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 		int width = w;
 		int height = w * 4 / 3;
 		//
-		RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mSurfaceView.getLayoutParams();
+		RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mSurfaceView
+				.getLayoutParams();
 		lp.width = width;
 		lp.height = height;
 		mSurfaceView.setLayoutParams(lp);
@@ -197,7 +207,8 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 			f.mkdirs();
 		}
 		String key = String.valueOf(System.currentTimeMillis());
-		mMediaObject = mMediaRecorder.setOutputDirectory(key, VCamera.getVideoCachePath() + key);
+		mMediaObject = mMediaRecorder.setOutputDirectory(key,
+				VCamera.getVideoCachePath() + key);
 		mMediaRecorder.setSurfaceHolder(mSurfaceView.getHolder());
 		mMediaRecorder.prepare();
 	}
@@ -213,7 +224,7 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
-				//检测是否手动对焦
+				// 检测是否手动对焦
 				if (checkCameraFocus(event))
 					return true;
 				break;
@@ -234,13 +245,13 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
-				//检测是否手动对焦
-				//判断是否已经超时
+				// 检测是否手动对焦
+				// 判断是否已经超时
 				if (mMediaObject.getDuration() >= RECORD_TIME_MAX) {
 					return true;
 				}
 
-				//取消回删
+				// 取消回删
 				if (cancelDelete())
 					return true;
 
@@ -253,7 +264,7 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 				if (mPressedStatus) {
 					stopRecord();
 
-					//检测是否已经完成
+					// 检测是否已经完成
 					if (mMediaObject.getDuration() >= RECORD_TIME_MAX) {
 						mTitleNext.performClick();
 					}
@@ -302,9 +313,17 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 		float touchMajor = event.getTouchMajor();
 		float touchMinor = event.getTouchMinor();
 
-		Rect touchRect = new Rect((int) (x - touchMajor / 2), (int) (y - touchMinor / 2), (int) (x + touchMajor / 2), (int) (y + touchMinor / 2));
-		//The direction is relative to the sensor orientation, that is, what the sensor sees. The direction is not affected by the rotation or mirroring of setDisplayOrientation(int). Coordinates of the rectangle range from -1000 to 1000. (-1000, -1000) is the upper left point. (1000, 1000) is the lower right point. The width and height of focus areas cannot be 0 or negative.
-		//No matter what the zoom level is, (-1000,-1000) represents the top of the currently visible camera frame
+		Rect touchRect = new Rect((int) (x - touchMajor / 2),
+				(int) (y - touchMinor / 2), (int) (x + touchMajor / 2),
+				(int) (y + touchMinor / 2));
+		// The direction is relative to the sensor orientation, that is, what
+		// the sensor sees. The direction is not affected by the rotation or
+		// mirroring of setDisplayOrientation(int). Coordinates of the rectangle
+		// range from -1000 to 1000. (-1000, -1000) is the upper left point.
+		// (1000, 1000) is the lower right point. The width and height of focus
+		// areas cannot be 0 or negative.
+		// No matter what the zoom level is, (-1000,-1000) represents the top of
+		// the currently visible camera frame
 		if (touchRect.right > 1000)
 			touchRect.right = 1000;
 		if (touchRect.bottom > 1000)
@@ -314,7 +333,8 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 		if (touchRect.right < 0)
 			touchRect.right = 0;
 
-		if (touchRect.left >= touchRect.right || touchRect.top >= touchRect.bottom)
+		if (touchRect.left >= touchRect.right
+				|| touchRect.top >= touchRect.bottom)
 			return false;
 
 		ArrayList<Camera.Area> focusAreas = new ArrayList<Camera.Area>();
@@ -323,17 +343,22 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 
 			@Override
 			public void onAutoFocus(boolean success, Camera camera) {
-				//				if (success) {
+				// if (success) {
 				mFocusImage.setVisibility(View.GONE);
-				//				}
+				// }
 			}
 		}, focusAreas)) {
 			mFocusImage.setVisibility(View.GONE);
 		}
 
-		RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mFocusImage.getLayoutParams();
-		int left = touchRect.left - (mFocusWidth / 2);//(int) x - (focusingImage.getWidth() / 2);
-		int top = touchRect.top - (mFocusWidth / 2);//(int) y - (focusingImage.getHeight() / 2);
+		RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mFocusImage
+				.getLayoutParams();
+		int left = touchRect.left - (mFocusWidth / 2);// (int) x -
+														// (focusingImage.getWidth()
+														// / 2);
+		int top = touchRect.top - (mFocusWidth / 2);// (int) y -
+													// (focusingImage.getHeight()
+													// / 2);
 		if (left < 0)
 			left = 0;
 		else if (left + mFocusWidth > mWindowWidth)
@@ -347,11 +372,12 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 		mFocusImage.setVisibility(View.VISIBLE);
 
 		if (mFocusAnimation == null)
-			mFocusAnimation = AnimationUtils.loadAnimation(this, R.anim.record_focus);
+			mFocusAnimation = AnimationUtils.loadAnimation(this,
+					R.anim.record_focus);
 
 		mFocusImage.startAnimation(mFocusAnimation);
 
-		mHandler.sendEmptyMessageDelayed(HANDLE_HIDE_RECORD_FOCUS, 3500);//最多3.5秒也要消失
+		mHandler.sendEmptyMessageDelayed(HANDLE_HIDE_RECORD_FOCUS, 3500);// 最多3.5秒也要消失
 		return true;
 	}
 
@@ -363,7 +389,7 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 				return;
 			}
 
-			//如果使用MediaRecorderSystem，不能在中途切换前后摄像头，否则有问题
+			// 如果使用MediaRecorderSystem，不能在中途切换前后摄像头，否则有问题
 			if (mMediaRecorder instanceof MediaRecorderSystem) {
 				mCameraSwitch.setVisibility(View.GONE);
 			}
@@ -380,7 +406,8 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 			mHandler.sendEmptyMessage(HANDLE_INVALIDATE_PROGRESS);
 
 			mHandler.removeMessages(HANDLE_STOP_RECORD);
-			mHandler.sendEmptyMessageDelayed(HANDLE_STOP_RECORD, RECORD_TIME_MAX - mMediaObject.getDuration());
+			mHandler.sendEmptyMessageDelayed(HANDLE_STOP_RECORD,
+					RECORD_TIME_MAX - mMediaObject.getDuration());
 		}
 		mRecordDelete.setVisibility(View.GONE);
 		mCameraSwitch.setEnabled(false);
@@ -395,16 +422,24 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 		}
 
 		if (mMediaObject != null && mMediaObject.getDuration() > 1) {
-			//未转码
-			new AlertDialog.Builder(this).setTitle(R.string.hint).setMessage(R.string.record_camera_exit_dialog_message).setNegativeButton(R.string.record_camera_cancel_dialog_yes, new DialogInterface.OnClickListener() {
+			// 未转码
+			new AlertDialog.Builder(this)
+					.setTitle(R.string.hint)
+					.setMessage(R.string.record_camera_exit_dialog_message)
+					.setNegativeButton(
+							R.string.record_camera_cancel_dialog_yes,
+							new DialogInterface.OnClickListener() {
 
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					mMediaObject.delete();
-					finish();
-				}
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									mMediaObject.delete();
+									finish();
+								}
 
-			}).setPositiveButton(R.string.record_camera_cancel_dialog_no, null).setCancelable(false).show();
+							})
+					.setPositiveButton(R.string.record_camera_cancel_dialog_no,
+							null).setCancelable(false).show();
 			return;
 		}
 
@@ -438,7 +473,7 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 			mHandler.removeMessages(HANDLE_STOP_RECORD);
 		}
 
-		//处理开启回删后其他点击操作
+		// 处理开启回删后其他点击操作
 		if (id != R.id.record_delete) {
 			if (mMediaObject != null) {
 				MediaObject.MediaPart part = mMediaObject.getCurrentPart();
@@ -475,8 +510,8 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 				mRecordLed.setEnabled(true);
 			}
 			break;
-		case R.id.record_camera_led://闪光灯
-			//开启前置摄像头以后不支持开启闪光灯
+		case R.id.record_camera_led:// 闪光灯
+			// 开启前置摄像头以后不支持开启闪光灯
 			if (mMediaRecorder != null) {
 				if (mMediaRecorder.isFrontCamera()) {
 					return;
@@ -491,7 +526,7 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 			mMediaRecorder.startEncoding();
 			break;
 		case R.id.record_delete:
-			//取消回删
+			// 取消回删
 			if (mMediaObject != null) {
 				MediaObject.MediaPart part = mMediaObject.getCurrentPart();
 				if (part != null) {
@@ -508,7 +543,7 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 				if (mProgressView != null)
 					mProgressView.invalidate();
 
-				//检测按钮状态
+				// 检测按钮状态
 				checkStatus();
 			}
 			break;
@@ -542,11 +577,11 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 					mCameraSwitch.setVisibility(View.VISIBLE);
 					mRecordDelete.setVisibility(View.GONE);
 				}
-				//视频必须大于3秒
+				// 视频必须大于3秒
 				if (mTitleNext.getVisibility() != View.INVISIBLE)
 					mTitleNext.setVisibility(View.INVISIBLE);
 			} else {
-				//下一步
+				// 下一步
 				if (mTitleNext.getVisibility() != View.VISIBLE) {
 					mTitleNext.setVisibility(View.VISIBLE);
 				}
@@ -563,8 +598,9 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 				if (mMediaRecorder != null && !isFinishing()) {
 					if (mProgressView != null)
 						mProgressView.invalidate();
-					//					if (mPressedStatus)
-					//						titleText.setText(String.format("%.1f", mMediaRecorder.getDuration() / 1000F));
+					// if (mPressedStatus)
+					// titleText.setText(String.format("%.1f",
+					// mMediaRecorder.getDuration() / 1000F));
 					if (mPressedStatus)
 						sendEmptyMessageDelayed(0, 30);
 				}
@@ -591,7 +627,8 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 		Bundle bundle = getIntent().getExtras();
 		if (bundle == null)
 			bundle = new Bundle();
-		bundle.putSerializable(CommonIntentExtra.EXTRA_MEDIA_OBJECT, mMediaObject);
+		bundle.putSerializable(CommonIntentExtra.EXTRA_MEDIA_OBJECT,
+				mMediaObject);
 		bundle.putString("output", mMediaObject.getOutputTempVideoPath());
 		bundle.putBoolean("Rebuild", mRebuild);
 		intent.putExtras(bundle);
@@ -600,13 +637,13 @@ public class MediaRecorderActivity extends BaseActivity implements OnErrorListen
 	}
 
 	/**
-	 * 转码失败
-	 * 	检查sdcard是否可用，检查分块是否存在
+	 * 转码失败 检查sdcard是否可用，检查分块是否存在
 	 */
 	@Override
 	public void onEncodeError() {
 		hideProgress();
-		Toast.makeText(this, R.string.record_video_transcoding_faild, Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, R.string.record_video_transcoding_faild,
+				Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

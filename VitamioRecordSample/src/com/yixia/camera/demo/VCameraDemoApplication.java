@@ -25,32 +25,34 @@ public class VCameraDemoApplication extends Application {
 
 	private static VCameraDemoApplication application;
 	private List<Activity> mActivitys = new ArrayList<Activity>();
-	private ImageLoaderConfiguration imageLoaderConfiguration ;
+	private ImageLoaderConfiguration imageLoaderConfiguration;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		application = this;
-//		imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(this)
-//				.threadPriority(Thread.NORM_PRIORITY - 1)
-//				.discCacheFileCount(200)
-//				.discCacheFileNameGenerator(new Md5FileNameGenerator())
-//				.tasksProcessingOrder(QueueProcessingType.FIFO)
-//				.writeDebugLogs() // Remove
-//				.build();
-//
-//		displayImageOptions = new DisplayImageOptions.Builder()
-//				.showStubImage(R.drawable.uil_ic_stub)
-//				.showImageForEmptyUri(R.drawable.uil_ic_empty)
-//				.showImageOnFail(R.drawable.uil_ic_error)
-//				.resetViewBeforeLoading(false)
-//				.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
-//				.displayer(new FadeInBitmapDisplayer(200)).cacheInMemory(true) // default
-//				.cacheOnDisc(true) // default
-//				.build();
+		// imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(this)
+		// .threadPriority(Thread.NORM_PRIORITY - 1)
+		// .discCacheFileCount(200)
+		// .discCacheFileNameGenerator(new Md5FileNameGenerator())
+		// .tasksProcessingOrder(QueueProcessingType.FIFO)
+		// .writeDebugLogs() // Remove
+		// .build();
+		//
+		// displayImageOptions = new DisplayImageOptions.Builder()
+		// .showStubImage(R.drawable.uil_ic_stub)
+		// .showImageForEmptyUri(R.drawable.uil_ic_empty)
+		// .showImageOnFail(R.drawable.uil_ic_error)
+		// .resetViewBeforeLoading(false)
+		// .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+		// .displayer(new FadeInBitmapDisplayer(200)).cacheInMemory(true) //
+		// default
+		// .cacheOnDisc(true) // default
+		// .build();
 
-		ImageLoader.getInstance().init((ImageLoaderConfiguration.createDefault(this))); // Do it on
-																	// Application
+		ImageLoader.getInstance().init(
+				(ImageLoaderConfiguration.createDefault(this))); // Do it on
+		// Application
 
 		// 设置拍摄视频缓存路径
 		File dcim = Environment
@@ -100,6 +102,14 @@ public class VCameraDemoApplication extends Application {
 				return;
 			}
 		}
+	}
+
+	public void pullAll() {
+		for (int i = 0; i < mActivitys.size(); i++) {
+			mActivitys.get(i).finish();
+
+		}
+
 	}
 
 	/**

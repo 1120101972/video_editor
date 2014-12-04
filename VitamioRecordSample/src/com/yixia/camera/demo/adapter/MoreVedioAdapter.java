@@ -79,9 +79,9 @@ public class MoreVedioAdapter extends BaseAdapter {
 		viewHolder.userName.setText(design.getOwner());
 		viewHolder.describle.setText(design.getbrif());
 
-		ImageLoader.getInstance().displayImage(
-				(String) data.get(position).getowner_url(),
-				viewHolder.personView);
+		// ImageLoader.getInstance().displayImage(
+		// (String) data.get(position).getowner_url(),
+		// viewHolder.personView);
 		ImageLoader.getInstance().displayImage(
 				(String) data.get(position).geturl(), viewHolder.videoView);
 

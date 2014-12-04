@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yixia.camera.demo.R;
+import com.yixia.camera.demo.VCameraDemoApplication;
 import com.yixia.camera.demo.common.CommonIntentExtra;
 import com.yixia.camera.demo.po.POThemeSingle;
 import com.yixia.camera.demo.service.AssertService;
@@ -108,6 +109,8 @@ public class MediaPreviewActivity extends BaseActivity implements
 	/** 视频信息 */
 	private MediaObject mMediaObject;
 
+	protected VCameraDemoApplication mApp;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -124,6 +127,9 @@ public class MediaPreviewActivity extends BaseActivity implements
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);// 防止锁屏
 		prepareActivity();
 		prepareViews();
+
+		mApp = (VCameraDemoApplication) VCameraDemoApplication.getContext();
+		mApp.push(this);
 	}
 
 	/** 预处理参数 */
@@ -139,8 +145,7 @@ public class MediaPreviewActivity extends BaseActivity implements
 		mLeftMargin = ConvertToUtils.dipToPX(this, 8);
 
 		mVideoPath = mMediaObject.getOutputVideoPath();
-		
-		
+
 		if (StringUtils.isNotEmpty(mVideoPath)) {
 			mCoverPath = mVideoPath.replace(".mp4", ".jpg");
 		}

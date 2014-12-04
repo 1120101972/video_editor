@@ -4,6 +4,7 @@ import com.yixia.camera.demo.R;
 import com.yixia.camera.demo.utils.StringUtils;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ public class BaseLayout extends RelativeLayout {
 	public ImageView btn_back;
 	public ImageView img_right2, img_right1;
 	public TextView tv_button;
-	private TextView tv_header;
+	public TextView tv_header;
 	private View ll_header_right, header_bar;
 
 	public View progressbg;
@@ -112,6 +113,15 @@ public class BaseLayout extends RelativeLayout {
 			tv_button.setText(btn_text);
 
 		}
+	}
+
+	public void setTitleRightImage() {
+		Drawable rightDrawable = getResources()
+				.getDrawable(R.drawable.jiantou);
+		rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(),
+				rightDrawable.getMinimumHeight());
+		tv_header.setCompoundDrawables(null, null, rightDrawable, null);
+
 	}
 
 	public void setTitleAndButton(String title) {

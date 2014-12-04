@@ -30,6 +30,7 @@
             android:paddingLeft="8.0dp"
             android:singleLine="true"
             android:text="你好"
+            android:clickable="true"
             android:textColor="@color/white"
             android:textSize="18sp" />
 

@@ -17,6 +17,9 @@ import org.json.JSONObject;
 
 import android.R.integer;
 import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.app.ActionBar.LayoutParams;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -29,15 +32,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yixia.camera.demo.R;
+import com.yixia.camera.demo.VCameraDemoApplication;
 import com.yixia.camera.demo.VCameraDemoBaseActivity;
 import com.yixia.camera.demo.ui.BaseActivity;
 import com.yixia.camera.demo.ui.widget.SurfaceVideoView;
@@ -63,6 +72,8 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 	private View mPlayerStatus;
 	private View mLoading;
 
+	private TextView tv_video_name, tv_video_des;
+
 	/** 播放路径 */
 	private String mPath;
 	/** 是否需要回复播放 */
@@ -82,9 +93,9 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		mPath = getIntent().getStringExtra("path");
-		SPHelper.getInstance(VideoPlayerActivity.this).setString(Constants.CURRENT_VIDEOPATH, mPath);
+		SPHelper.getInstance(VideoPlayerActivity.this).setString(
+				Constants.CURRENT_VIDEOPATH, mPath);
 		// mPath = "http://10.1.112.123:6060/vedio/hello.mp4" ;
-		
 
 		Log.d(this.getClass().toString(), mPath);
 		if (StringUtils.isEmpty(mPath)) {
@@ -95,34 +106,8 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 		setView(R.layout.activity_video_player, LAYOUT_TYPE_HEADER);
 
 		baseLayout.setTitleAndButton("视频信息", "发布");
-		mVideoView = (SurfaceVideoView) findViewById(R.id.videoview);
-		mPlayerStatus = findViewById(R.id.play_status);
-		mLoading = findViewById(R.id.loading);
+		initView();
 
-		mVideoView.setOnPreparedListener(this);
-		mVideoView.setOnPlayStateListener(this);
-		mVideoView.setOnErrorListener(this);
-		mVideoView.setOnClickListener(this);
-		mVideoView.setOnInfoListener(this);
-		mVideoView.setOnCompletionListener(this);
-		baseLayout.btn_back.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				finish();
-
-			}
-		});
-		baseLayout.tv_button.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				handleHeaderTextEvent();
-
-			}
-		});
 		// mVideoView
 		// .setOnVideoSizeChangedListener(new OnVideoSizeChangedListener() {
 		//
@@ -144,6 +129,7 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 
 		findViewById(R.id.root).setOnClickListener(this);
 		mVideoView.setVideoPath(mPath);
+		mApp.push(this);
 
 	}
 
@@ -305,6 +291,7 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 		// post = new HttpPost("http://10.1.112.123:8080/vedio/upload.action");
 		// }
 		Toast.makeText(VideoPlayerActivity.this, "开始上传", 0).show();
+		mApp.pullAll();
 		// new Thread(new postLostFound()).start();
 
 	}
@@ -321,6 +308,14 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 				mVideoView.pause();
 			else
 				mVideoView.start();
+			break;
+
+		case R.id.et_video_brife:
+			myselfDialog(mContext, 1);
+			break;
+
+		case R.id.et_video_name:
+			myselfDialog(mContext, 0);
 			break;
 		}
 	}
@@ -360,12 +355,125 @@ public class VideoPlayerActivity extends VCameraDemoBaseActivity implements
 	@Override
 	public void initView() {
 		// TODO Auto-generated method stub
+		mVideoView = (SurfaceVideoView) findViewById(R.id.videoview);
+		mPlayerStatus = findViewById(R.id.play_status);
+		mLoading = findViewById(R.id.loading);
+
+		mVideoView.setOnPreparedListener(this);
+		mVideoView.setOnPlayStateListener(this);
+		mVideoView.setOnErrorListener(this);
+		mVideoView.setOnClickListener(this);
+		mVideoView.setOnInfoListener(this);
+		mVideoView.setOnCompletionListener(this);
+		baseLayout.btn_back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				finish();
+
+			}
+		});
+		baseLayout.tv_button.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				handleHeaderTextEvent();
+
+			}
+		});
+
+		tv_video_des = (TextView) findViewById(R.id.et_video_brife);
+		tv_video_name = (TextView) findViewById(R.id.et_video_name);
+
+		tv_video_des.setOnClickListener(this);
+		tv_video_name.setOnClickListener(this);
 
 	}
 
 	@Override
 	public void initData() {
 		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * 输入文字设置
+	 */
+	Dialog dialog = null;
+	private ImageView imgOK, imgNO;
+	private EditText etxtName, etxtComment;
+
+	public void myselfDialog(final Context context, final int flag) {
+
+		dialog = new Dialog(context);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.outputcomment);
+
+		Window diaWindow = dialog.getWindow();
+		WindowManager.LayoutParams lp = diaWindow.getAttributes();
+		diaWindow.setGravity(Gravity.BOTTOM);
+		lp.width = LayoutParams.FILL_PARENT;
+		diaWindow.setAttributes(lp);
+		imgOK = (ImageView) dialog.findViewById(R.id.imgOK);
+		imgNO = (ImageView) dialog.findViewById(R.id.imgNo);
+		etxtName = (EditText) dialog.findViewById(R.id.etxtName);
+		etxtName.setVisibility(View.GONE);
+		etxtComment = (EditText) dialog.findViewById(R.id.etxtCommentDetail);
+		if (flag == 0) {
+			String aString = tv_video_name.getText().toString() ;
+			if (tv_video_name.getText().toString().equals("视频名称"))
+				etxtComment.setHint("视频名称...");
+			else {
+				etxtComment.setText(tv_video_name.getText().toString());
+			}
+		} else {
+			if (tv_video_des.getText().toString().equals("视频简介"))
+				etxtComment.setHint("视频简介...");
+			else {
+				etxtComment.setText(tv_video_des.getText().toString());
+			}
+
+		}
+		InputMethodManager imm = (InputMethodManager) context
+				.getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.showSoftInput(etxtComment, InputMethodManager.SHOW_FORCED);
+		imgNO.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				dialog.dismiss();
+			}
+		});
+		imgOK.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				String mBody = etxtComment.getText().toString();
+
+				InputMethodManager imm = (InputMethodManager) context
+						.getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(etxtComment.getWindowToken(), 0); // 强制隐藏键盘
+
+				// 将评论的信息发送到数据库进行存储
+
+				// 每次将评论发表之后都要刷新一次得到最新的评论信息
+				if (flag == 0) {
+					tv_video_name.setText(mBody);
+				} else {
+					tv_video_des.setTextSize(14);
+					tv_video_des.setText(mBody);
+				}
+				dialog.dismiss();
+
+			}
+		});
+		dialog.setTitle("评论");
+
+		dialog.show();
 
 	}
 

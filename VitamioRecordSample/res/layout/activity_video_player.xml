@@ -9,10 +9,9 @@
         android:id="@+id/videoview"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:fitsSystemWindows="true"
         android:background="@color/transparent"
+        android:fitsSystemWindows="true"
         android:saveEnabled="true" />
-
 
     <ImageView
         android:id="@+id/play_status"
@@ -32,24 +31,42 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="130dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/et_video_name"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_below="@+id/videoview"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="视频名称" >
-    </EditText>
+        android:clickable="true"
+        android:drawableBottom="@drawable/divider"
+        android:focusable="false"
+        android:gravity="center_vertical"
+        android:text="视频名称"
+        android:textColor="@color/detail_new_comment"
+        android:textSize="20sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/et_video_brife"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/et_video_name"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:hint="视频简介" >
-    </EditText>
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:focusable="false"
+        android:gravity="center_vertical"
+        android:text="视频简介"
+        android:textColor="@color/detail_new_comment"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="2dp"
+        android:layout_below="@+id/et_video_brife"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/divider" />
 
 </RelativeLayout>

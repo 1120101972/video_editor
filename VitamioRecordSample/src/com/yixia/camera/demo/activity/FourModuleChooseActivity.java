@@ -1,11 +1,15 @@
 package com.yixia.camera.demo.activity;
 
+import java.util.ArrayList;
+
+import android.R.integer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -41,6 +45,8 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	private FragmentManager manager;
 	private final String TAG = "FourModuleChooseActivity";
 
+	private ArrayList<VideoListFlowGFragment> fragments = new ArrayList<VideoListFlowGFragment>();
+
 	CoverFlow cf;
 
 	private String[] title = { "原创频道", "改编频道", "记者频道", "演播室" };
@@ -55,6 +61,9 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 				R.drawable.menu);
 		initView();
 		Constants.current = 0;
+		for (int i = 0; i < 4; i++) {
+			fragments.add(null);
+		}
 		// CoverFlowAdapter adapter = new CoverFlowAdapter(
 		// FourModuleChooseActivity.this);
 		// // flow.setAdapter(adapter);
@@ -81,22 +90,38 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	protected void handleHeaderEvent1() {
 		// TODO Auto-generated method stub
 		super.handleHeaderEvent1();
-		
 
 	}
 
-	public void setMargin(int height) {
-		// RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
-		// RelativeLayout.LayoutParams.WRAP_CONTENT,
-		// RelativeLayout.LayoutParams.WRAP_CONTENT);
-		// mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		// mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		// mp.setMargins(0, 0, 0, -(height / 2));
-		// iv_change_module.setLayoutParams(mp);
-		// iv_change_module.setVisibility(View.VISIBLE);
+	public void setMargin(int width, int height) {
+		RelativeLayout.LayoutParams mp = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.WRAP_CONTENT,
+				RelativeLayout.LayoutParams.WRAP_CONTENT);
+		mp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		mp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		// if ((1600 - width) / 2 > 0)
+		DisplayMetrics dm = new DisplayMetrics();
+		getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+		mp.setMargins(-(1560 - dm.widthPixels), 0, 0,
+				-(int) ((height / 2) * (1 + (Math.sqrt(2.0) / 2))));
+
+		// -(int) ((height / 2) * (1 + (Math.sqrt(2.0) / 2)))
+		// else {
+		// mp.setMargins(0, 0, 0,
+		// -(int) ((height / 2) * (1 + (Math.sqrt(2.0) / 2))));
+		// }
+
+		iv_change_module.setLayoutParams(mp);
+		iv_change_module.setVisibility(View.VISIBLE);
 		// Toast.makeText(
 		// FourModuleChooseActivity.this,
-		// StringUtils.px2dip(FourModuleChooseActivity.this, height / 2)
+		// StringUtils.px2dip(FourModuleChooseActivity.this,
+		// (int) ((height/2) * (1 + (Math.sqrt(2.0) / 2)))) + "", 0)
+		// .show();
+		// Toast.makeText(
+		// FourModuleChooseActivity.this,
+		// StringUtils.px2dip(FourModuleChooseActivity.this, 700 - height)
 		// + "", 0).show();
 
 	}
@@ -130,17 +155,24 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	}
 
 	public void getFragment(int type) {
+
 		baseLayout.setHeaderBarStyle(title[type], R.drawable.menu, 0,
 				R.drawable.search);
 		Constants.current = type;
 		manager = getSupportFragmentManager();
 		FragmentTransaction ft = manager.beginTransaction();
 		ft.setCustomAnimations(R.anim.anim_alpha_show, R.anim.anim_alpha_fade);
-		Bundle bundle1 = new Bundle();
-		bundle1.putInt("module", type);
-		VideoListFlowGFragment fragment = new VideoListFlowGFragment();
-		fragment.setArguments(bundle1);
-		ft.replace(R.id.frag_cover_flow, fragment).commit();
+
+		if (fragments.get(type) != null) {
+			ft.replace(R.id.frag_cover_flow, fragments.get(type)).commit();
+		} else {
+			Bundle bundle1 = new Bundle();
+			bundle1.putInt("module", type);
+			VideoListFlowGFragment fragment = new VideoListFlowGFragment();
+			fragment.setArguments(bundle1);
+			ft.replace(R.id.frag_cover_flow, fragment).commit();
+			fragments.add(type, fragment);
+		}
 
 	}
 
@@ -187,6 +219,5 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 		// TODO Auto-generated method stub
 
 	}
-	
 
 }

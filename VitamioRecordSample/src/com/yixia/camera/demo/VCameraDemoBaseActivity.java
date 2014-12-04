@@ -96,6 +96,7 @@ public abstract class VCameraDemoBaseActivity extends FragmentActivity implement
 				baseLayout.btn_back.setOnClickListener(this);
 			if (baseLayout.tv_button != null)
 				baseLayout.tv_button.setOnClickListener(this);
+			
 			// if (baseLayout.ll_city_header != null)
 			// baseLayout.ll_city_header.setOnClickListener(this);
 		}
@@ -365,9 +366,9 @@ public abstract class VCameraDemoBaseActivity extends FragmentActivity implement
 //			unregisterReceiver(mExitAppReceiver);
 //		}
 
-		if (null != mApp) {
-			mApp.pull((Activity) mContext);
-		}
+//		if (null != mApp) {
+//			mApp.pull((Activity) mContext);
+//		}
 		super.onDestroy();
 	}
 

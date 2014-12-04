@@ -3,6 +3,7 @@ package com.yixia.camera.demo.fragment;
 import java.util.ArrayList;
 
 import com.yixia.camera.demo.R;
+import com.yixia.camera.demo.adapter.ImageAdapter;
 import com.yixia.camera.demo.bean.VideoDetailBean;
 import com.yixia.camera.demo.ui.widget.coverflow.CoverFlow;
 
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.RelativeLayout;
 
 /**
@@ -25,6 +27,8 @@ public class VideoListFlowGFragment extends Fragment {
 	CoverFlow cf;
 	View view;
 	private ArrayList<VideoDetailBean> list = new ArrayList<VideoDetailBean>();
+	private ImageAdapter adapter;
+	private GridView gv_main;
 
 	private int[] back_image = { R.drawable.spring_main,
 			R.drawable.summer_main, R.drawable.autunm_main,
@@ -37,18 +41,21 @@ public class VideoListFlowGFragment extends Fragment {
 		// TODO Auto-generated method stub
 		view = inflater.inflate(R.layout.fragment_videolist_flow, null);
 		type = (int) getArguments().getInt("module");
-		initView();
+
 		// FancyCoverFlow fancyCoverFlow = (FancyCoverFlow) view
 		// .findViewById(R.id.fancyCoverFlow);
 		// fancyCoverFlow.setReflectionEnabled(true);
 		// fancyCoverFlow.setReflectionRatio(0.3f);
 		// fancyCoverFlow.setReflectionGap(0);
-		// for (int i = 0; i < 5; i++) {
-		// VideoDetailBean bean = new VideoDetailBean();
-		// bean.seturl("http://img.tupianzj.com/uploads/allimg/141113/3-141113114414.jpg");
-		// bean.setbrif("OK 真好看");
-		// list.add(bean);
-		// }
+		if (list.size() == 0)
+			for (int i = 0; i < 8; i++) {
+				VideoDetailBean bean = new VideoDetailBean();
+				bean.seturl("http://img.tupianzj.com/uploads/allimg/141113/3-141113114414.jpg");
+				bean.setid(i + "");
+				list.add(bean);
+			}
+
+		initView();
 		//
 		// fancyCoverFlow.setAdapter(new ViewGroupExampleAdapter(getActivity(),
 		// list));
@@ -66,6 +73,10 @@ public class VideoListFlowGFragment extends Fragment {
 	private void initView() {
 		rl_main = (RelativeLayout) view.findViewById(R.id.rl_back);
 		rl_main.setBackgroundResource(back_image[type]);
+		gv_main = (GridView) view.findViewById(R.id.mainPageGridview);
+		adapter = new ImageAdapter(getActivity(), list);
+		gv_main.setAdapter(adapter);
+
 	}
 
 }

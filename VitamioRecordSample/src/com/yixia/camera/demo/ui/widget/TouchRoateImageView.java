@@ -2,8 +2,10 @@ package com.yixia.camera.demo.ui.widget;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.CountDownLatch;
 
 import com.yixia.camera.demo.activity.FourModuleChooseActivity;
+import com.yixia.camera.demo.utils.StringUtils;
 
 import android.R.bool;
 import android.R.integer;
@@ -52,6 +54,7 @@ public class TouchRoateImageView extends ImageView implements
 	private TouchRoateImageView current;
 	private boolean if_animate = false;
 	private GestureDetector mGestureDetector;
+	private int Count = 0;
 
 	public TouchRoateImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -73,9 +76,16 @@ public class TouchRoateImageView extends ImageView implements
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		centerX = this.getWidth() / 2;
-		centerY = this.getHeight() / 2;
-		((FourModuleChooseActivity) currentContext).setMargin(this.getHeight());
+		// centerX = (float) this.getWidth() / 2;
+		// centerY = (float) this.getHeight() / 2;
+		centerX = (float) this.getHeight() / 2;
+		centerY = (float) this.getHeight() / 2;
+
+		if (Count == 0) {
+			((FourModuleChooseActivity) currentContext).setMargin(
+					this.getWidth(), this.getHeight());
+			Count++;
+		}
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {
@@ -87,6 +97,8 @@ public class TouchRoateImageView extends ImageView implements
 	private void handleTouch(MotionEvent event) {
 		curTouchX = event.getX();
 		curTouchY = event.getY();
+
+		Log.d("TouchRoateImageView", "X" + curTouchX + ";Y" + curTouchY);
 
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:

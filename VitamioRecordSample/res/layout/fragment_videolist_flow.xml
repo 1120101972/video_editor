@@ -6,8 +6,25 @@
     android:background="@drawable/autunm_main"
     android:orientation="vertical" >
 
-
-
-
+    <GridView
+        android:id="@+id/mainPageGridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/transparent"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:footerDividersEnabled="true"
+        android:gravity="center"
+        android:headerDividersEnabled="true"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="10dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:scrollingCache="false"
+        android:stretchMode="columnWidth" />
 
 </RelativeLayout>
