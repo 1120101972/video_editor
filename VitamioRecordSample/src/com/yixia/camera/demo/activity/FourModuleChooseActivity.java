@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,6 +60,7 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 		setView(R.layout.activity_four_module_page, LAYOUT_TYPE_HEADER);
 		baseLayout.setHeaderBarStyle("原创频道", R.drawable.search, 0,
 				R.drawable.menu);
+
 		initView();
 		Constants.current = 0;
 		for (int i = 0; i < 4; i++) {
@@ -90,6 +92,8 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 	protected void handleHeaderEvent1() {
 		// TODO Auto-generated method stub
 		super.handleHeaderEvent1();
+		startActivity(new Intent().setClass(mContext,
+				PersonalMainActivity.class));
 
 	}
 
@@ -151,6 +155,16 @@ public class FourModuleChooseActivity extends VCameraDemoBaseActivity {
 		iv_video.setOnClickListener(this);
 		tv_more = (TextView) findViewById(R.id.tv_more);
 		tv_more.setOnClickListener(this);
+
+		baseLayout.btn_back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent().setClass(mContext,
+						LoginActivity.class));
+			}
+		});
 
 	}
 

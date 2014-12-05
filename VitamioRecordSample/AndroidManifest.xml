@@ -68,6 +68,18 @@
             android:theme="@style/CameraTheme" >
         </activity>
         <activity
+            android:name=".activity.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraTheme" >
+        </activity>
+        <activity
+            android:name=".activity.PersonalMainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraTheme" >
+        </activity>
+        <activity
             android:name=".ui.record.MediaRecorderActivity"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
